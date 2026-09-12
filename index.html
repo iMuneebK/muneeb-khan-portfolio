@@ -80,105 +80,107 @@
     margin-bottom:20px;
   }
   .hero h1 .accent{color:var(--cyan);}
-  .hero p.tagline{
-    font-size:1.05rem;color:var(--muted);max-width:540px;margin-bottom:34px;font-weight:300;
-    text-align:justify;line-height:1.65;
+  .tagline{
+    font-size:clamp(1.02rem,1.4vw,1.2rem);color:var(--muted);
+    max-width:580px;margin-bottom:32px;font-weight:300;text-align:justify;
   }
   .status-pill{
     display:inline-flex;align-items:center;gap:8px;
-    font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.06em;
-    color:var(--cyan);border:1px solid rgba(76,217,192,0.35);background:rgba(76,217,192,0.06);
-    padding:6px 14px;border-radius:20px;text-transform:uppercase;
+    font-family:'IBM Plex Mono',monospace;font-size:0.75rem;
+    color:var(--cyan);background:rgba(76,217,192,0.08);
+    padding:6px 14px;border-radius:20px;border:1px solid rgba(76,217,192,0.25);
+    margin-bottom:24px;
   }
-  .status-pill .blip{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:blip 1.8s ease-in-out infinite;}
-  @keyframes blip{0%,100%{opacity:1;}50%{opacity:.35;}}
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px;}
+  .status-pill .blip{
+    width:7px;height:7px;border-radius:50%;background:var(--cyan);
+    box-shadow:0 0 8px var(--cyan);animation:pulse 2s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+  .cta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:36px;}
   .btn{
     font-family:'IBM Plex Mono',monospace;font-size:0.82rem;letter-spacing:0.04em;
-    padding:13px 24px;border-radius:4px;transition:all .25s;
-    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    padding:12px 24px;border-radius:4px;display:inline-flex;align-items:center;gap:8px;
+    transition:all .25s;cursor:pointer;
   }
-  .btn-primary{background:var(--cyan);color:#08131A;font-weight:500;border:1px solid var(--cyan);}
-  .btn-primary:hover{background:#69e6d0;transform:translateY(-2px);box-shadow:0 4px 20px rgba(76,217,192,0.25);}
-  .btn-ghost{border:1px solid var(--card-line);color:var(--text);background:var(--card);}
-  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px);}
+  .btn-primary{background:var(--cyan);color:var(--bg);font-weight:500;}
+  .btn-primary:hover{background:#69e6d0;transform:translateY(-2px);box-shadow:0 6px 20px rgba(76,217,192,0.3);}
+  .btn-ghost{border:1px solid var(--card-line);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);}
   .btn-amber{border:1px solid rgba(255,184,77,0.4);color:var(--amber);background:rgba(255,184,77,0.05);}
-  .btn-amber:hover{border-color:var(--amber);background:rgba(255,184,77,0.15);transform:translateY(-2px);}
+  .btn-amber:hover{background:rgba(255,184,77,0.15);border-color:var(--amber);}
 
-  .stat-row{display:flex;gap:28px;flex-wrap:wrap;}
-  .stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.5rem;color:var(--text);}
-  .stat span{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;}
+  .stat-row{display:flex;gap:36px;border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;}
+  .stat b{font-family:'Space Grotesk',sans-serif;font-size:1.8rem;color:var(--text);display:block;line-height:1;}
+  .stat span{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
 
-  .hero-visual{position:relative;display:flex;justify-content:center;align-items:center;}
+  /* PORTRAIT VISUAL */
+  .hero-visual{display:flex;justify-content:center;align-items:center;position:relative;}
   .portrait-wrap{
-    position:relative;width:280px;height:280px;
+    position:relative;width:280px;height:280px;border-radius:50%;
+    padding:8px;background:linear-gradient(135deg, var(--cyan), transparent, var(--amber));
+    box-shadow:0 0 50px rgba(76,217,192,0.2);
+  }
+  .portrait{
+    width:264px;height:264px;border-radius:50%;object-fit:cover;object-position:center top;
+    display:block;border:3px solid var(--bg);
   }
   .portrait-ring{
-    position:absolute;inset:-14px;border-radius:50%;
-    border:1px dashed rgba(76,217,192,0.4);
-    animation:spin 26s linear infinite;
+    position:absolute;inset:-12px;border-radius:50%;
+    border:1px dashed rgba(76,217,192,0.3);
+    animation:rotateRing 30s linear infinite;
   }
-  @keyframes spin{to{transform:rotate(360deg);}}
-  .portrait{
-    width:280px;height:280px;border-radius:50%;object-fit:cover;
-    border:3px solid var(--cyan);
-    box-shadow:0 0 50px rgba(76,217,192,0.25);
-  }
+  @keyframes rotateRing{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 
-  canvas#signalCanvas{
-    position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:0.45;
-  }
-  .hero::after{
-    content:"";position:absolute;inset:0;
-    background:radial-gradient(ellipse at 70% 30%, rgba(76,217,192,0.10), transparent 55%),
-               radial-gradient(ellipse at 10% 80%, rgba(255,184,77,0.06), transparent 50%);
-    z-index:2;pointer-events:none;
-  }
+  /* CANVAS */
+  #signalCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:0.35;pointer-events:none;}
 
-  /* SECTION SHARED */
-  section{padding:100px 6vw;position:relative;}
-  .section-head{margin-bottom:48px;max-width:680px;}
-  .section-head .eyebrow{margin-bottom:14px;}
-  .section-head h2{font-size:clamp(1.8rem,3.4vw,2.5rem);}
-  .section-head p{color:var(--muted);margin-top:12px;font-size:1rem;}
+  /* SECTIONS GENERAL */
+  section{padding:100px 6vw;position:relative;z-index:2;}
+  .section-head{margin-bottom:50px;}
+  .section-head h2{font-size:clamp(1.8rem,3.2vw,2.8rem);line-height:1.1;}
 
+  /* ABOUT GRID */
   #about{background:var(--panel);border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);}
-  .about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:start;}
-  .about-text p{color:#c7cede;margin-bottom:18px;font-size:1.02rem;max-width:580px;text-align:justify;line-height:1.7;}
-  .identity-cards{display:flex;flex-direction:column;gap:16px;}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  .about-text p{color:var(--muted);font-size:1.02rem;margin-bottom:18px;text-align:justify;line-height:1.65;}
+  .identity-cards{display:flex;flex-direction:column;gap:18px;}
   .identity-card{
-    background:var(--card);border:1px solid var(--card-line);border-radius:8px;padding:22px 24px;
-    transition:border-color .25s, transform .25s;
+    background:var(--card);border:1px solid var(--card-line);border-radius:8px;padding:24px;
+    transition:border-color .3s;
   }
-  .identity-card:hover{border-color:var(--cyan);transform:translateX(4px);}
-  .identity-card .tag{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;display:block;}
+  .identity-card:hover{border-color:var(--cyan);}
+  .identity-card .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--cyan);
+    text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;display:block;
+  }
   .identity-card h3{font-size:1.1rem;margin-bottom:6px;}
-  .identity-card p{color:var(--muted);font-size:0.9rem;text-align:justify;}
+  .identity-card p{color:var(--muted);font-size:0.88rem;text-align:justify;}
 
-  /* SKILLS */
-  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
-  .skill-cluster{background:var(--card);border:1px solid var(--card-line);border-radius:8px;padding:32px;}
-  .skill-cluster h3{font-size:1.15rem;margin-bottom:6px;display:flex;align-items:center;gap:10px;}
-  .skill-cluster h3 .dot{width:8px;height:8px;border-radius:50%;}
-  .skill-cluster.ai .dot{background:var(--cyan);}
-  .skill-cluster.telecom .dot{background:var(--amber);}
-  .skill-cluster .sub{color:var(--muted);font-size:0.85rem;margin-bottom:22px;}
-  .chip-row{display:flex;flex-wrap:wrap;gap:10px;}
-  .chip{
-    font-family:'IBM Plex Mono',monospace;font-size:0.76rem;color:var(--text);
-    border:1px solid var(--card-line);padding:7px 13px;border-radius:20px;
-    transition:all .2s;
+  /* SKILLS GRID */
+  #skills{background:var(--bg);}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:24px;}
+  .skill-group{background:var(--card);border:1px solid var(--card-line);border-radius:8px;padding:26px;}
+  .skill-group h3{
+    font-size:1rem;color:var(--cyan);font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;letter-spacing:0.06em;margin-bottom:16px;
+    display:flex;align-items:center;gap:10px;
   }
-  .skill-cluster.ai .chip:hover{border-color:var(--cyan);color:var(--cyan);}
-  .skill-cluster.telecom .chip:hover{border-color:var(--amber);color:var(--amber);}
+  .skill-group h3::before{content:"//";color:var(--amber);}
+  .pill-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .pill{
+    font-family:'IBM Plex Mono',monospace;font-size:0.75rem;
+    color:var(--text);background:rgba(255,255,255,0.04);
+    padding:5px 12px;border-radius:4px;border:1px solid rgba(255,255,255,0.08);
+  }
 
-  /* PROJECTS */
-  #projects{background:var(--panel);border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);}
-  .filter-row{display:flex;gap:12px;margin-bottom:36px;flex-wrap:wrap;}
+  /* PROJECTS SECTION */
+  #projects{background:var(--panel);border-top:1px solid rgba(255,255,255,0.05);}
+  .filter-bar{display:flex;gap:12px;margin-bottom:36px;flex-wrap:wrap;}
   .filter-btn{
-    font-family:'IBM Plex Mono',monospace;font-size:0.76rem;padding:8px 18px;
-    border-radius:20px;border:1px solid var(--card-line);background:var(--card);
-    color:var(--muted);cursor:pointer;transition:all .2s;
+    font-family:'IBM Plex Mono',monospace;font-size:0.76rem;color:var(--muted);
+    background:var(--card);border:1px solid var(--card-line);padding:8px 18px;border-radius:4px;
+    cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:0.05em;
   }
   .filter-btn.active,.filter-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(76,217,192,0.08);}
 
@@ -222,8 +224,8 @@
   .cert-card h3{font-size:1.08rem;margin-bottom:8px;color:var(--text);}
   .cert-card p{color:var(--muted);font-size:0.86rem;margin-bottom:16px;line-height:1.5;}
   .cert-status-row{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;}
-  .cert-badge{color:var(--cyan);background:rgba(76,217,192,0.08);padding:3px 8px;border-radius:4px;border:1px solid rgba(76,217,192,0.2);}
-  .cert-click-cue{color:var(--amber);font-weight:500;}
+  .cert-badge{color:var(--amber);background:rgba(255,184,77,0.08);padding:3px 8px;border-radius:4px;border:1px solid rgba(255,184,77,0.25);}
+  .cert-click-cue{color:var(--cyan);font-weight:500;}
 
   /* MODAL */
   .modal-overlay{
@@ -382,9 +384,9 @@
         <p>YOLOv8, RAG pipelines, fine-tuned LLMs, deep learning, and multi-agent AI workforces trained on real data.</p>
       </div>
       <div class="identity-card">
-        <span class="tag">The Site Engineer</span>
-        <h3>Telecom Infrastructure, EHS & QC</h3>
-        <p>Live Huawei 4G/5G network deployment, safety & quality audits, and hands-on site troubleshooting.</p>
+        <span class="tag">The Telecom Engineer</span>
+        <h3>Field Operations & Quality Control</h3>
+        <p>On-site quality audits, EHS compliance, installation checks, and physical infrastructure troubleshooting for Huawei projects.</p>
       </div>
     </div>
   </div>
@@ -393,30 +395,63 @@
 <section id="skills">
   <div class="section-head">
     <div class="eyebrow">02 — Skills</div>
-    <h2>What I work with.</h2>
-    <p>A technical stack split across two fields that keep informing each other.</p>
+    <h2>Technical repertoire.</h2>
   </div>
   <div class="skills-grid">
-    <div class="skill-cluster ai">
-      <h3><span class="dot"></span>AI & Machine Learning</h3>
-      <p class="sub">Model building, training, Generative AI & deployment</p>
-      <div class="chip-row">
-        <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span>
-        <span class="chip">YOLOv8</span><span class="chip">LangChain</span><span class="chip">LangGraph</span>
-        <span class="chip">LLM Fine-Tuning</span><span class="chip">PEFT / QLoRA</span><span class="chip">CrewAI</span>
-        <span class="chip">Computer Vision</span><span class="chip">NLP</span><span class="chip">FastAPI</span>
-        <span class="chip">Docker</span><span class="chip">MLflow</span><span class="chip">SQL</span>
+    <div class="skill-group">
+      <h3>AI & Machine Learning</h3>
+      <div class="pill-list">
+        <span class="pill">Computer Vision</span>
+        <span class="pill">YOLOv8 / YOLOv11</span>
+        <span class="pill">NLP</span>
+        <span class="pill">Generative AI</span>
+        <span class="pill">RAG & LangChain</span>
+        <span class="pill">LLM Fine-Tuning</span>
+        <span class="pill">LoRA / QLoRA</span>
+        <span class="pill">Multi-Agent (CrewAI)</span>
+        <span class="pill">Deep Learning</span>
+        <span class="pill">Grad-CAM</span>
+        <span class="pill">Time-Series (LSTM)</span>
+        <span class="pill">Reinforcement Learning</span>
       </div>
     </div>
-    <div class="skill-cluster telecom">
-      <h3><span class="dot"></span>Telecom & Field Engineering</h3>
-      <p class="sub">Network infrastructure and site operations</p>
-      <div class="chip-row">
-        <span class="chip">Site Engineering</span><span class="chip">Huawei Network Equipment</span>
-        <span class="chip">EHS Compliance</span><span class="chip">Quality Control (QC)</span>
-        <span class="chip">Safety Audits</span><span class="chip">Network Troubleshooting</span>
-        <span class="chip">BTS / Tower Infrastructure</span><span class="chip">Hardware Maintenance</span>
-        <span class="chip">Vendor Coordination</span>
+    <div class="skill-group">
+      <h3>Frameworks & Tools</h3>
+      <div class="pill-list">
+        <span class="pill">PyTorch</span>
+        <span class="pill">TensorFlow</span>
+        <span class="pill">HuggingFace</span>
+        <span class="pill">OpenCV</span>
+        <span class="pill">Scikit-Learn</span>
+        <span class="pill">FastAPI</span>
+        <span class="pill">Streamlit</span>
+        <span class="pill">MLflow</span>
+        <span class="pill">DVC</span>
+        <span class="pill">Docker</span>
+        <span class="pill">Git & GitHub</span>
+        <span class="pill">ONNX</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Languages</h3>
+      <div class="pill-list">
+        <span class="pill">Python</span>
+        <span class="pill">SQL</span>
+        <span class="pill">C / C++</span>
+        <span class="pill">HTML / CSS / JS</span>
+        <span class="pill">PHP</span>
+        <span class="pill">Bash</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Telecom & Field</h3>
+      <div class="pill-list">
+        <span class="pill">Site Engineering</span>
+        <span class="pill">EHS Management</span>
+        <span class="pill">Quality Control (QC)</span>
+        <span class="pill">Network Infrastructure</span>
+        <span class="pill">5G NR / 4G LTE</span>
+        <span class="pill">Safety Auditing</span>
       </div>
     </div>
   </div>
@@ -425,37 +460,32 @@
 <section id="projects">
   <div class="section-head">
     <div class="eyebrow">03 — Projects</div>
-    <h2>Portfolio Showcase (29 Projects)</h2>
-    <p>Explore all 24 GitHub repositories and 5 Kaggle competition notebooks built across AI, Computer Vision, LLMs, Telecom, and Healthcare.</p>
+    <h2>Selected work.</h2>
   </div>
-
-  <div class="filter-row">
+  <div class="filter-bar">
     <button class="filter-btn active" onclick="filterProjects('all')">All Projects (29)</button>
     <button class="filter-btn" onclick="filterProjects('github')">GitHub Repos (24)</button>
     <button class="filter-btn" onclick="filterProjects('kaggle')">Kaggle Notebooks (5)</button>
   </div>
-
   <div class="project-grid" id="projectContainer">
-    <!-- Projects populated via JS -->
+    <!-- Rendered dynamically via JavaScript -->
   </div>
 </section>
 
 <section id="certifications">
   <div class="section-head">
-    <div class="eyebrow">04 — Certifications</div>
-    <h2>Certifications & Training (14 Courses)</h2>
-    <p>Click on any certification card to open its interactive verification badge & course details.</p>
+    <div class="eyebrow">04 — Education & Training</div>
+    <h2>Certifications & Coursework.</h2>
   </div>
-
   <div class="cert-grid" id="certContainer">
-    <!-- Certifications populated via JS -->
+    <!-- Rendered dynamically via JavaScript -->
   </div>
 </section>
 
 <section id="experience">
   <div class="section-head">
     <div class="eyebrow">05 — Experience</div>
-    <h2>Where I've worked.</h2>
+    <h2>Field & engineering track.</h2>
   </div>
   <div class="timeline">
     <div class="t-item current">
@@ -560,9 +590,9 @@
         <div class="ic">🐙</div>
         <div><div class="lbl">GitHub Profile</div><div class="v">github.com/iMuneebK</div></div>
       </a>
-      <a class="contact-link" href="https://www.kaggle.com/imuneebk" target="_blank" rel="noopener">
+      <a class="contact-link" href="https://www.kaggle.com/mmuneebkhan154" target="_blank" rel="noopener">
         <div class="ic">📊</div>
-        <div><div class="lbl">Kaggle Profile</div><div class="v">kaggle.com/imuneebk</div></div>
+        <div><div class="lbl">Kaggle Profile</div><div class="v">kaggle.com/mmuneebkhan154</div></div>
       </a>
     </div>
   </div>
@@ -576,8 +606,8 @@
     <h3 id="mName">Certificate Name</h3>
     <p id="mDesc">Description</p>
     <div style="display:flex;justify-content:space-between;align-items:center;">
-      <span class="cert-badge" id="mStatus">STATUS</span>
-      <a id="mLink" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="padding:8px 18px;font-size:0.76rem;">Verify / Course Link ↗</a>
+      <span class="cert-badge" id="mStatus">Upload Scheduled</span>
+      <a id="mLink" href="mailto:smuneebkhan154@gmail.com" class="btn btn-primary" style="padding:8px 18px;font-size:0.76rem;">Request Document ↗</a>
     </div>
   </div>
 </div>
@@ -964,8 +994,8 @@
       "XGBoost",
       "LightGBM"
     ],
-    "link": "https://www.kaggle.com/code/mmuneebkhan154/titanic-survival-prediction-advanced-ml-pipeline",
-    "type": "Kaggle Notebook"
+    "link": "https://www.kaggle.com/mmuneebkhan154",
+    "type": "Kaggle Profile"
   },
   {
     "title": "House Prices Advanced Regression Pipeline",
@@ -978,8 +1008,8 @@
       "Gradient Boosting",
       "Blending"
     ],
-    "link": "https://www.kaggle.com/code/mmuneebkhan154/house-prices-regression-complete-ml-pipeline",
-    "type": "Kaggle Notebook"
+    "link": "https://www.kaggle.com/mmuneebkhan154",
+    "type": "Kaggle Profile"
   },
   {
     "title": "NLP Disaster Tweets Classification",
@@ -992,8 +1022,8 @@
       "Bi-LSTM",
       "BERT Fine-Tuning"
     ],
-    "link": "https://www.kaggle.com/code/mmuneebkhan154/nlp-disaster-tweets-classification",
-    "type": "Kaggle Notebook"
+    "link": "https://www.kaggle.com/mmuneebkhan154",
+    "type": "Kaggle Profile"
   },
   {
     "title": "Credit Card Fraud Detection (Imbalanced Data)",
@@ -1006,8 +1036,8 @@
       "Autoencoders",
       "Isolation Forest"
     ],
-    "link": "https://www.kaggle.com/code/mmuneebkhan154/credit-card-fraud-detection-anomaly-ml-pipeline",
-    "type": "Kaggle Notebook"
+    "link": "https://www.kaggle.com/mmuneebkhan154",
+    "type": "Kaggle Profile"
   },
   {
     "title": "Plant Disease Image Classification (ResNet50)",
@@ -1020,8 +1050,8 @@
       "Transfer Learning",
       "Grad-CAM"
     ],
-    "link": "https://www.kaggle.com/code/mmuneebkhan154/plant-disease-classification-using-transfer-learning",
-    "type": "Kaggle Notebook"
+    "link": "https://www.kaggle.com/mmuneebkhan154",
+    "type": "Kaggle Profile"
   }
 ];
   const ALL_CERTS = [
@@ -1029,99 +1059,99 @@
     "name": "Google AI Essentials",
     "provider": "Google (Coursera)",
     "desc": "Foundational AI principles, prompt engineering, generative AI workflows, and responsible AI implementation.",
-    "status": "Verified Certificate",
-    "link": "https://www.coursera.org/learn/google-ai-essentials"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "Google Cloud AI/ML Skills",
     "provider": "Google Cloud Skills Boost",
     "desc": "Hands-on labs for Vertex AI, BigQuery ML, custom model training, and Cloud Vision API deployment.",
-    "status": "Official Skill Badge",
-    "link": "https://cloudskillsboost.google/"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "IBM AI Fundamentals",
     "provider": "IBM (SkillsBuild)",
     "desc": "Core artificial intelligence concepts, neural networks, machine learning algorithms, and ethical AI governance.",
-    "status": "IBM Digital Badge",
-    "link": "https://skillsbuild.org/"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "Crash Course of Python",
     "provider": "Google",
     "desc": "Python programming language fundamentals, data structures, object-oriented concepts, and automation scripting.",
-    "status": "Google Certificate",
-    "link": "https://www.coursera.org/learn/python-crash-course"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "HuggingFace NLP Course",
     "provider": "HuggingFace",
     "desc": "Advanced Natural Language Processing using Transformers, Datasets, Evaluate, and model fine-tuning for Hub deployment.",
-    "status": "HuggingFace Verified",
-    "link": "https://huggingface.co/learn/nlp-course"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "DeepLearning.AI Short Courses",
     "provider": "Andrew Ng (DeepLearning.AI)",
     "desc": "Specialized micro-courses covering RAG, Prompt Engineering, Vector Databases, and Multi-Agent Orchestration.",
-    "status": "Verified Certificate",
-    "link": "https://www.deeplearning.ai/short-courses/"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "AWS Machine Learning Foundations",
     "provider": "AWS (Udacity / Coursera)",
     "desc": "AWS Machine Learning stack, Amazon SageMaker, Computer Vision, and Reinforcement Learning on AWS cloud.",
-    "status": "AWS Foundations",
-    "link": "https://aws.amazon.com/machine-learning/"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "NVIDIA Deep Learning Institute (DLI)",
     "provider": "NVIDIA",
     "desc": "GPU-accelerated deep learning model training, CUDA acceleration, and Computer Vision pipeline optimization.",
-    "status": "NVIDIA DLI Certificate",
-    "link": "https://www.nvidia.com/en-us/training/"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "TensorFlow Developer Certificate Prep",
     "provider": "Google (Coursera)",
     "desc": "Deep Neural Networks, Computer Vision CNNs, Time Series LSTMs, and NLP sequence modeling with TensorFlow 2.x.",
-    "status": "Specialization Cert",
-    "link": "https://www.coursera.org/professional-certificates/tensorflow-in-practice"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "Elements of AI",
     "provider": "University of Helsinki",
     "desc": "Comprehensive introduction to AI logic, Bayes rule, neural network design, and real-world societal AI impact.",
-    "status": "University Certificate",
-    "link": "https://www.elementsofai.com/"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "Kaggle Micro-Courses",
     "provider": "Kaggle (Google)",
     "desc": "Hands-on certificates in Python, Pandas, Data Visualization, Intro to ML, Intermediate ML, and Feature Engineering.",
-    "status": "Kaggle Certified",
-    "link": "https://www.kaggle.com/learn"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "Harvard CS50 AI with Python",
     "provider": "Harvard (edX)",
     "desc": "Graph search algorithms, minimax adversarial search, constraint satisfaction, machine learning, and neural networks.",
-    "status": "Harvard / edX Verified",
-    "link": "https://www.edx.org/learn/artificial-intelligence/harvard-university-cs50-s-introduction-to-artificial-intelligence-with-python"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "Stanford CS229 Machine Learning",
     "provider": "Stanford (Coursera)",
     "desc": "Supervised learning, unsupervised learning, deep learning best practices, SVMs, decision trees, and ML system design.",
-    "status": "Stanford Course",
-    "link": "https://www.coursera.org/specializations/machine-learning-introduction"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   },
   {
     "name": "Fast.ai Practical Deep Learning",
     "provider": "Fast.ai",
     "desc": "Practical deep learning for coders using PyTorch and fastai, training state-of-the-art vision, NLP, and tabular models.",
-    "status": "Fast.ai Certificate",
-    "link": "https://course.fast.ai/"
+    "status": "Upload Scheduled",
+    "link": "mailto:smuneebkhan154@gmail.com?subject=Request%20for%20Verified%20Credentials%20-%20Muhammad%20Muneeb%20Khan"
   }
 ];
 
@@ -1185,7 +1215,7 @@
         </div>
         <div class="cert-status-row">
           <span class="cert-badge">${c.status}</span>
-          <span class="cert-click-cue">View Cert ↗</span>
+          <span class="cert-click-cue">Details ↗</span>
         </div>
       `;
       container.appendChild(card);
@@ -1195,7 +1225,7 @@
   function openCertModal(c) {
     document.getElementById('mProvider').innerText = c.provider;
     document.getElementById('mName').innerText = c.name;
-    document.getElementById('mDesc').innerText = c.desc;
+    document.getElementById('mDesc').innerText = c.desc + "\n\n[Note: Official educational documents, transcripts, and verified completion certificates are scheduled for upload tomorrow. Verified credentials are available upon request.]";
     document.getElementById('mStatus').innerText = c.status;
     document.getElementById('mLink').href = c.link;
     document.getElementById('certModal').classList.add('open');
@@ -1229,10 +1259,11 @@
     for(let i=0;i<cols;i++){
       for(let j=0;j<rows;j++){
         nodes.push({
-          x: (i+0.5) * (w/cols) + (Math.random()-0.5)*40,
-          y: (j+0.5) * (h/rows) + (Math.random()-0.5)*40,
-          phase: Math.random()*Math.PI*2,
-          speed: 0.6 + Math.random()*0.8
+          x: (i + 0.5) * (w / cols) + (Math.random() - 0.5) * 30,
+          y: (j + 0.5) * (h / rows) + (Math.random() - 0.5) * 30,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          r: Math.random() * 2 + 1
         });
       }
     }
@@ -1240,32 +1271,35 @@
   window.addEventListener('resize', resize);
   resize();
 
-  function dist(a,b){ return Math.hypot(a.x-b.x, a.y-b.y); }
-
-  let t = 0;
   function draw(){
     ctx.clearRect(0,0,w,h);
-    t += 0.006;
+    
+    nodes.forEach(n => {
+      if(!reduceMotion){
+        n.x += n.vx; n.y += n.vy;
+        if(n.x<0 || n.x>w) n.vx *= -1;
+        if(n.y<0 || n.y>h) n.vy *= -1;
+      }
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+      ctx.fillStyle = '#4CD9C0';
+      ctx.fill();
+    });
+
     for(let i=0;i<nodes.length;i++){
       for(let j=i+1;j<nodes.length;j++){
-        const d = dist(nodes[i], nodes[j]);
-        if(d < 150){
-          const pulse = (Math.sin(t*nodes[i].speed + nodes[i].phase) + 1)/2;
-          ctx.strokeStyle = `rgba(76,217,192,${0.06 + pulse*0.10})`;
-          ctx.lineWidth = 1;
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 140){
           ctx.beginPath();
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(76,217,192,${(1 - dist/140) * 0.15})`;
+          ctx.lineWidth = 0.8;
           ctx.stroke();
         }
       }
-    }
-    for(const n of nodes){
-      const pulse = (Math.sin(t*n.speed + n.phase) + 1)/2;
-      ctx.fillStyle = `rgba(76,217,192,${0.25 + pulse*0.5})`;
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, 1.4 + pulse*1.6, 0, Math.PI*2);
-      ctx.fill();
     }
     if(!reduceMotion) requestAnimationFrame(draw);
   }
