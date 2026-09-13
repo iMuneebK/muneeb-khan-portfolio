@@ -386,8 +386,14 @@
     .portrait-wrap{width:220px;height:220px;margin:0 auto;}
     .portrait{width:204px;height:204px;}
     
-    .about-grid,.skills-grid,.project-grid,.cert-grid,.edu-grid,.contact-wrap{grid-template-columns:1fr;}
-    
+    .about-grid, .skills-grid, .project-grid, .cert-grid, .edu-grid, .contact-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .project-card, .cert-card, .edu-card {
+      width: 100%;
+    }
     .timeline::before{left:36px;}
     .t-item{padding-left:64px;}
     .t-item .t-date{width:auto;position:relative;text-align:left;margin-bottom:8px;left:0;top:0;display:block;color:var(--amber);}
@@ -710,7 +716,10 @@
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
   navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
-  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
+  const navLinks = navMenu.querySelectorAll('a');
+  for(let i=0; i<navLinks.length; i++) {
+    navLinks[i].addEventListener('click', () => navMenu.classList.remove('open'));
+  }
 
   // Shrink nav on scroll
   const nav = document.querySelector('nav');
@@ -729,18 +738,19 @@
   try {
     if (window.IntersectionObserver) {
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
+        for(let i=0; i<entries.length; i++) {
+          if(entries[i].isIntersecting) entries[i].target.classList.add('visible');
+        }
       }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      const reveals = document.querySelectorAll('.reveal');
+      for(let i=0; i<reveals.length; i++) observer.observe(reveals[i]);
     } else {
-      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      const reveals = document.querySelectorAll('.reveal');
+      for(let i=0; i<reveals.length; i++) reveals[i].classList.add('visible');
     }
   } catch (e) {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    const reveals = document.querySelectorAll('.reveal');
+    for(let i=0; i<reveals.length; i++) reveals[i].classList.add('visible');
   }
 
   // Typing animation
@@ -1313,7 +1323,7 @@
       
       const techSpans = p.tech.map(t => `<span>${t}</span>`).join('');
       const btnClass = p.category === 'kaggle' ? 'project-link-btn kaggle' : 'project-link-btn';
-      const num = String(idx + 1).padStart(2, '0');
+      const num = (idx + 1 < 10 ? '0' : '') + (idx + 1);
       
       card.innerHTML = `
         <div class="project-head">
@@ -1338,7 +1348,10 @@
   }
 
   function filterProjects(e, cat) {
-    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    const btns = document.querySelectorAll('.filter-btn');
+    for(let i=0; i<btns.length; i++) {
+      btns[i].classList.remove('active');
+    }
     if(e && e.target) e.target.classList.add('active');
     renderProjects(cat);
   }
