@@ -249,29 +249,59 @@
   .project-link-btn.kaggle{background:var(--amber);color:#0B1220;}
   .project-link-btn.kaggle:hover{background:#ffc875;box-shadow:0 3px 12px rgba(255,184,77,0.3);}
 
-  /* CERTIFICATIONS — SIMPLE LEARNING CARDS (NO MODAL) */
+  /* CERTIFICATIONS */
   #certifications{background:var(--bg);}
   .cert-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:20px;}
   .cert-card{
     background:var(--card);border:1px solid var(--card-line);border-radius:8px;padding:24px;
     transition:all .25s;display:flex;flex-direction:column;justify-content:space-between;
-    position:relative;overflow:hidden;
+    position:relative;overflow:hidden;cursor:pointer;
   }
   .cert-card::before{
     content:'';position:absolute;top:0;right:0;width:60px;height:60px;
     background:linear-gradient(135deg, transparent 50%, rgba(255,184,77,0.06) 50%);
     pointer-events:none;
   }
-  .cert-card:hover{border-color:rgba(255,184,77,0.4);transform:translateY(-3px);box-shadow:0 6px 20px rgba(255,184,77,0.08);}
+  .cert-card:hover{border-color:var(--amber);transform:translateY(-3px);box-shadow:0 6px 20px rgba(255,184,77,0.12);}
   .cert-provider{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--amber);text-transform:uppercase;margin-bottom:8px;display:block;letter-spacing:0.04em;}
   .cert-card h3{font-size:1.08rem;margin-bottom:8px;color:var(--text);}
-  .cert-card p{color:var(--muted);font-size:0.86rem;margin-bottom:16px;line-height:1.5;flex-grow:1;}
-  .cert-tag-row{display:flex;flex-wrap:wrap;gap:6px;}
-  .cert-tag{
-    font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
-    color:var(--amber);background:rgba(255,184,77,0.06);
-    padding:3px 8px;border-radius:4px;border:1px solid rgba(255,184,77,0.15);
+  .cert-card p{color:var(--muted);font-size:0.86rem;margin-bottom:14px;line-height:1.5;flex-grow:1;}
+  .cert-click-cue{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--amber);
+    margin-top:12px;display:flex;align-items:center;gap:6px;transition:color .2s;
   }
+  .cert-card:hover .cert-click-cue{color:#ffd188;}
+
+  /* CERTIFICATE DETAILS MODAL */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(11,18,32,0.88);backdrop-filter:blur(10px);
+    z-index:999;display:none;align-items:center;justify-content:center;padding:20px;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-card{
+    background:var(--panel);border:1px solid var(--amber);border-radius:12px;padding:32px;
+    max-width:560px;width:100%;position:relative;box-shadow:0 16px 48px rgba(0,0,0,0.6), 0 0 30px rgba(255,184,77,0.18);
+    animation:modalFadeIn 0.25s ease-out;
+  }
+  @keyframes modalFadeIn {
+    from { opacity:0; transform:scale(0.96) translateY(10px); }
+    to { opacity:1; transform:scale(1) translateY(0); }
+  }
+  .modal-close{
+    position:absolute;top:16px;right:18px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+    color:var(--muted);width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    font-size:1.3rem;line-height:1;transition:all .2s;
+  }
+  .modal-close:hover{background:rgba(255,184,77,0.15);color:var(--amber);border-color:var(--amber);}
+  .m-provider-badge{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:var(--amber);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;display:inline-block;background:rgba(255,184,77,0.08);padding:4px 10px;border-radius:4px;border:1px solid rgba(255,184,77,0.2);}
+  .modal-card h3{font-size:1.35rem;margin-bottom:18px;color:var(--text);line-height:1.35;padding-right:32px;}
+  .modal-subtitle{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--cyan);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;}
+  .modal-desc{color:var(--muted);font-size:0.95rem;margin-bottom:20px;line-height:1.65;}
+  .modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+  .modal-tag{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--cyan);background:rgba(76,217,192,0.08);padding:4px 10px;border-radius:4px;border:1px solid rgba(76,217,192,0.2);}
+  .modal-footnote{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:var(--muted);border-top:1px solid var(--card-line);padding-top:14px;display:flex;justify-content:space-between;align-items:center;}
+  .modal-btn-dismiss{background:transparent;border:1px solid var(--card-line);color:var(--muted);padding:6px 14px;border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:0.75rem;cursor:pointer;transition:all .2s;}
+  .modal-btn-dismiss:hover{color:var(--text);border-color:var(--amber);}
 
   /* EXPERIENCE TIMELINE */
   #experience{background:var(--panel);border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);}
@@ -428,9 +458,9 @@
       </div>
       <div class="stat-row">
         <div class="stat"><b>3.45</b><span>CGPA &middot; BS AI</span></div>
-        <div class="stat"><b>MS</b><span>AI &middot; in progress</span></div>
-        <div class="stat"><b>25+</b><span>GitHub Repos</span></div>
-        <div class="stat"><b>5+</b><span>Kaggle Notebooks</span></div>
+        <div class="stat"><b>MS</b><span>AI Scholar &middot; PAF-IAST</span></div>
+        <div class="stat"><b>Huawei</b><span>Site Engineer</span></div>
+        <div class="stat"><b>AI & Telecom</b><span>Dual Discipline</span></div>
       </div>
     </div>
     <div class="hero-visual">
@@ -535,7 +565,7 @@
 <section id="projects" class="reveal">
   <div class="section-head">
     <div class="eyebrow">03 &#8212; Projects</div>
-    <h2>Selected work.</h2>
+    <h2>Projects.</h2>
   </div>
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterProjects(event, 'all')">Projects</button>
@@ -672,6 +702,24 @@
     </div>
   </div>
 </section>
+
+<!-- CERTIFICATE DETAILS MODAL -->
+<div class="modal-overlay" id="certModal" onclick="handleModalOverlayClick(event)">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeCertModal()" aria-label="Close modal">&times;</button>
+    <span class="m-provider-badge" id="mProvider">PROVIDER</span>
+    <h3 id="mName">Certificate Name</h3>
+    <div class="modal-subtitle">What was learned & taught:</div>
+    <p class="modal-desc" id="mDesc">Description</p>
+    <div class="modal-subtitle">Key Competencies & Concepts:</div>
+    <div class="modal-tags" id="mTags"></div>
+    <div class="modal-footnote">
+      <span>Verified Learning & Curriculum</span>
+      <button class="modal-btn-dismiss" onclick="closeCertModal()">Close (or click outside)</button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <span class="mono">&copy; 2026 Muhammad Muneeb Khan</span>
   <div class="footer-links">
@@ -1118,6 +1166,21 @@
     "type": "GitHub Repo"
   },
   {
+    "title": "Fibonacci Series Suite & Matrix Exponentiation",
+    "category": "github",
+    "tag": "ALGORITHMS & MATH",
+    "desc": "High-performance sequence generation suite implementing space-optimized iterative pipelines, memoized dynamic programming, and logarithmic O(log n) 2x2 matrix binary powering for astronomical term values.",
+    "tech": [
+      "Python",
+      "Dynamic Programming",
+      "Matrix Exponentiation",
+      "Benchmarking",
+      "Algorithms"
+    ],
+    "link": "https://github.com/iMuneebK/Fabonacci-Series-Generator",
+    "type": "GitHub Repo"
+  },
+  {
     "title": "Titanic Survival Prediction (Advanced Stacking)",
     "category": "kaggle",
     "tag": "KAGGLE COMPETITION",
@@ -1182,6 +1245,79 @@
       "Computer Vision",
       "ResNet50",
       "Transfer Learning",
+      "Grad-CAM"
+    ],
+    "link": "https://www.kaggle.com/mmuneebkhan154/code",
+    "type": "Kaggle Profile"
+  },
+  {
+    "title": "CommonLit Student Summaries Scoring (DeBERTa)",
+    "category": "kaggle",
+    "tag": "KAGGLE NLP",
+    "desc": "Automated student reading comprehension and summary scoring using fine-tuned DeBERTa-v3 with custom regression heads, MCRMSE loss optimization, and stratified cross-validation.",
+    "tech": [
+      "DeBERTa-v3",
+      "HuggingFace",
+      "PyTorch",
+      "NLP",
+      "Cross-Validation"
+    ],
+    "link": "https://www.kaggle.com/mmuneebkhan154/code",
+    "type": "Kaggle Profile"
+  },
+  {
+    "title": "LLM Detect AI-Generated Text (DeBERTa Ensemble)",
+    "category": "kaggle",
+    "tag": "KAGGLE NLP",
+    "desc": "Ensemble classification system distinguishing student essays from AI-generated prose using token length distribution, TF-IDF byte-pair n-grams, and fine-tuned DeBERTa language models.",
+    "tech": [
+      "LLM Detection",
+      "DeBERTa",
+      "TF-IDF",
+      "Ensemble",
+      "ROC-AUC"
+    ],
+    "link": "https://www.kaggle.com/mmuneebkhan154/code",
+    "type": "Kaggle Profile"
+  },
+  {
+    "title": "ISIC 2024 Skin Cancer Detection (Swin Transformer)",
+    "category": "kaggle",
+    "tag": "KAGGLE VISION",
+    "desc": "Dermoscopic image classification predicting malignancy risk via Swin Transformer transfer learning, balanced focal loss for minority class handling, and partial AUC metric optimization.",
+    "tech": [
+      "Swin Transformer",
+      "Computer Vision",
+      "Transfer Learning",
+      "Medical AI"
+    ],
+    "link": "https://www.kaggle.com/mmuneebkhan154/code",
+    "type": "Kaggle Profile"
+  },
+  {
+    "title": "Optiver Trading Signal & Volatility Forecasting",
+    "category": "kaggle",
+    "tag": "KAGGLE TIME-SERIES",
+    "desc": "Quantitative high-frequency order book and trade volume analytics pipeline engineering weighted mid-price features and training LightGBM models for stock price move predictions.",
+    "tech": [
+      "Quantitative Finance",
+      "LightGBM",
+      "Order Book Analytics",
+      "Feature Engineering"
+    ],
+    "link": "https://www.kaggle.com/mmuneebkhan154/code",
+    "type": "Kaggle Profile"
+  },
+  {
+    "title": "RSNA Abdominal Trauma Detection (3D CNN)",
+    "category": "kaggle",
+    "tag": "KAGGLE VISION",
+    "desc": "Multi-organ trauma assessment from 3D abdominal CT scans using 3D convolutional networks, slice-level feature aggregation, and patient-level injury severity grading.",
+    "tech": [
+      "3D CNN",
+      "Medical Imaging",
+      "CT Scan Analysis",
+      "PyTorch",
       "Grad-CAM"
     ],
     "link": "https://www.kaggle.com/mmuneebkhan154/code",
@@ -1289,25 +1425,24 @@
   }
 ];
 
-  // Render Projects
+  // Render Projects (No numbers mentioned on cards)
   function renderProjects(filter = 'all') {
     const container = document.getElementById('projectContainer');
     container.innerHTML = '';
     
     const filtered = ALL_PROJECTS.filter(p => filter === 'all' || p.category === filter);
     
-    filtered.forEach((p, idx) => {
+    filtered.forEach((p) => {
       const card = document.createElement('div');
       card.className = 'project-card';
       
       const techSpans = p.tech.map(t => `<span>${t}</span>`).join('');
       const btnClass = p.category === 'kaggle' ? 'project-link-btn kaggle' : 'project-link-btn';
-      const num = (idx + 1 < 10 ? '0' : '') + (idx + 1);
       
       card.innerHTML = `
         <div class="project-head">
           <div class="project-badge-row">
-            <span class="pnum">PROJECT / ${num}</span>
+            <span class="pnum">PROJECT</span>
             <span class="ptype">${p.tag}</span>
           </div>
           <h3>${p.title}</h3>
@@ -1335,18 +1470,18 @@
     renderProjects(cat);
   }
 
-  // Render Certifications (Simple cards — no modal, no click)
+  // Render Certifications (Simple cards that open details modal on click)
   function renderCerts() {
     const container = document.getElementById('certContainer');
     container.innerHTML = '';
     
-    ALL_CERTS.forEach((c) => {
+    ALL_CERTS.forEach((c, idx) => {
       const card = document.createElement('div');
       card.className = 'cert-card';
-      
-      // Extract topic tags from description (first 2-3 words before comma)
-      const topics = c.desc.split(',').slice(0, 3).map(t => t.trim().split(' ').slice(0, 3).join(' '));
-      const tagHtml = topics.map(t => `<span class="cert-tag">${t}</span>`).join('');
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.onclick = () => openCertModal(idx);
+      card.onkeydown = (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCertModal(idx); } };
       
       card.innerHTML = `
         <div>
@@ -1354,13 +1489,49 @@
           <h3>${c.name}</h3>
           <p>${c.desc}</p>
         </div>
-        <div class="cert-tag-row">
-          ${tagHtml}
+        <div class="cert-click-cue">
+          <span>Click to view details</span> &rarr;
         </div>
       `;
       container.appendChild(card);
     });
   }
+
+  function openCertModal(idx) {
+    const c = ALL_CERTS[idx];
+    if (!c) return;
+    document.getElementById('mProvider').innerText = 'Issued by: ' + c.provider;
+    document.getElementById('mName').innerText = c.name;
+    document.getElementById('mDesc').innerText = c.desc;
+    
+    const tagsContainer = document.getElementById('mTags');
+    const topics = c.desc.split(',').map(t => t.trim().replace(/^and\s+/i, ''));
+    tagsContainer.innerHTML = topics.map(t => `<span class="modal-tag">${t}</span>`).join('');
+    
+    const modal = document.getElementById('certModal');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCertModal() {
+    const modal = document.getElementById('certModal');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  function handleModalOverlayClick(e) {
+    // Clicking outside the modal card closes it immediately!
+    if (e.target.id === 'certModal') {
+      closeCertModal();
+    }
+  }
+
+  // Pressing ESC closes modal
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeCertModal();
+  });
 
   // Initialize
   renderProjects('all');
