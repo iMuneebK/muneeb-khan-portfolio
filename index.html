@@ -754,30 +754,34 @@
   }
 
   // Typing animation
-  const phrases = ['intelligence.', 'innovation.', 'engineering.', 'precision.'];
-  let phraseIdx = 0, charIdx = 0, isDeleting = false;
-  const typedEl = document.getElementById('typedText');
-  function typeLoop() {
-    const current = phrases[phraseIdx];
-    if(isDeleting) {
-      typedEl.textContent = current.substring(0, charIdx - 1);
-      charIdx--;
-    } else {
-      typedEl.textContent = current.substring(0, charIdx + 1);
-      charIdx++;
+  try {
+    const phrases = ['intelligence.', 'innovation.', 'engineering.', 'precision.'];
+    let phraseIdx = 0, charIdx = 0, isDeleting = false;
+    const typedEl = document.getElementById('typedText');
+    if (typedEl) {
+      function typeLoop() {
+        const current = phrases[phraseIdx];
+        if(isDeleting) {
+          typedEl.textContent = current.substring(0, charIdx - 1);
+          charIdx--;
+        } else {
+          typedEl.textContent = current.substring(0, charIdx + 1);
+          charIdx++;
+        }
+        let delay = isDeleting ? 50 : 100;
+        if(!isDeleting && charIdx === current.length) {
+          delay = 2000;
+          isDeleting = true;
+        } else if(isDeleting && charIdx === 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          delay = 400;
+        }
+        setTimeout(typeLoop, delay);
+      }
+      typeLoop();
     }
-    let delay = isDeleting ? 50 : 100;
-    if(!isDeleting && charIdx === current.length) {
-      delay = 2000;
-      isDeleting = true;
-    } else if(isDeleting && charIdx === 0) {
-      isDeleting = false;
-      phraseIdx = (phraseIdx + 1) % phrases.length;
-      delay = 400;
-    }
-    setTimeout(typeLoop, delay);
-  }
-  typeLoop();
+  } catch(e) { console.error("Typing animation error", e); }
 
   // Data
   const ALL_PROJECTS = [
@@ -1400,65 +1404,69 @@
   renderCerts();
 
   // Canvas
-  const canvas = document.getElementById('signalCanvas');
-  const ctx = canvas.getContext('2d');
-  let w, h, nodes = [];
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function resize(){
-    w = canvas.width = canvas.offsetWidth;
-    h = canvas.height = canvas.offsetHeight;
-    const cols = Math.max(5, Math.floor(w / 130));
-    const rows = Math.max(3, Math.floor(h / 130));
-    nodes = [];
-    for(let i=0;i<cols;i++){
-      for(let j=0;j<rows;j++){
-        nodes.push({
-          x: (i + 0.5) * (w / cols) + (Math.random() - 0.5) * 30,
-          y: (j + 0.5) * (h / rows) + (Math.random() - 0.5) * 30,
-          vx: (Math.random() - 0.5) * 0.3,
-          vy: (Math.random() - 0.5) * 0.3,
-          r: Math.random() * 2 + 1
-        });
-      }
-    }
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  function draw(){
-    ctx.clearRect(0,0,w,h);
+  try {
+    const canvas = document.getElementById('signalCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let w, h, nodes = [];
+      const reduceMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
     
-    nodes.forEach(n => {
-      if(!reduceMotion){
-        n.x += n.vx; n.y += n.vy;
-        if(n.x<0 || n.x>w) n.vx *= -1;
-        if(n.y<0 || n.y>h) n.vy *= -1;
-      }
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
-      ctx.fillStyle = '#4CD9C0';
-      ctx.fill();
-    });
-
-    for(let i=0;i<nodes.length;i++){
-      for(let j=i+1;j<nodes.length;j++){
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if(dist < 140){
-          ctx.beginPath();
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.strokeStyle = `rgba(76,217,192,${(1 - dist/140) * 0.15})`;
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
+      function resize(){
+        w = canvas.width = canvas.offsetWidth;
+        h = canvas.height = canvas.offsetHeight;
+        const cols = Math.max(5, Math.floor(w / 130));
+        const rows = Math.max(3, Math.floor(h / 130));
+        nodes = [];
+        for(let i=0;i<cols;i++){
+          for(let j=0;j<rows;j++){
+            nodes.push({
+              x: (i + 0.5) * (w / cols) + (Math.random() - 0.5) * 30,
+              y: (j + 0.5) * (h / rows) + (Math.random() - 0.5) * 30,
+              vx: (Math.random() - 0.5) * 0.3,
+              vy: (Math.random() - 0.5) * 0.3,
+              r: Math.random() * 2 + 1
+            });
+          }
         }
       }
+      window.addEventListener('resize', resize);
+      resize();
+    
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+        
+        nodes.forEach(n => {
+          if(!reduceMotion){
+            n.x += n.vx; n.y += n.vy;
+            if(n.x<0 || n.x>w) n.vx *= -1;
+            if(n.y<0 || n.y>h) n.vy *= -1;
+          }
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+          ctx.fillStyle = '#4CD9C0';
+          ctx.fill();
+        });
+    
+        for(let i=0;i<nodes.length;i++){
+          for(let j=i+1;j<nodes.length;j++){
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if(dist < 140){
+              ctx.beginPath();
+              ctx.moveTo(nodes[i].x, nodes[i].y);
+              ctx.lineTo(nodes[j].x, nodes[j].y);
+              ctx.strokeStyle = `rgba(76,217,192,${(1 - dist/140) * 0.15})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+        }
+        if(!reduceMotion) requestAnimationFrame(draw);
+      }
+      draw();
     }
-    if(!reduceMotion) requestAnimationFrame(draw);
-  }
-  draw();
+  } catch(e) { console.error("Canvas error", e); }
 </script>
 </body>
 </html>
