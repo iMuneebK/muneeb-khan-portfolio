@@ -2,11 +2,11 @@
 
 Live Website: [https://muneeb-khan.netlify.app/](https://muneeb-khan.netlify.app/)
 
-Welcome to my official portfolio repository showcasing **29 AI & Telecom Engineering Projects**, **14 Industry Certifications**, interactive project cards, modal certification viewers, and field engineering experience with Huawei & Talkpool.
+Welcome to my official portfolio repository showcasing AI & Telecom Engineering Projects, Industry Certifications, interactive project cards, certification details viewer, and field engineering experience with Huawei & Talkpool.
 
 ## 🚀 Key Portfolio Features
-- **29 Open-Source Projects** (24 GitHub Repositories + 5 Kaggle Notebooks)
-- **14 Verifiable Industry Certifications** with interactive modal viewer
+- **Open-Source Projects** (GitHub Repositories + Kaggle Notebooks)
+- **Verifiable Industry Certifications** with interactive curriculum details viewer
 - **Dark Theme Cyberpunk Design System** (`--bg: #0B1220; --panel: #0F1B2E; --cyan: #4CD9C0`)
 - **Neural Network Canvas Animation** background
 - **100% Responsive Layout** optimized for mobile, tablet, and desktop viewports
