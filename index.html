@@ -249,44 +249,29 @@
   .project-link-btn.kaggle{background:var(--amber);color:#0B1220;}
   .project-link-btn.kaggle:hover{background:#ffc875;box-shadow:0 3px 12px rgba(255,184,77,0.3);}
 
-  /* CERTIFICATIONS */
+  /* CERTIFICATIONS — SIMPLE LEARNING CARDS (NO MODAL) */
   #certifications{background:var(--bg);}
   .cert-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:20px;}
   .cert-card{
     background:var(--card);border:1px solid var(--card-line);border-radius:8px;padding:24px;
     transition:all .25s;display:flex;flex-direction:column;justify-content:space-between;
-    position:relative;overflow:hidden;cursor:pointer;
+    position:relative;overflow:hidden;
   }
   .cert-card::before{
     content:'';position:absolute;top:0;right:0;width:60px;height:60px;
     background:linear-gradient(135deg, transparent 50%, rgba(255,184,77,0.06) 50%);
     pointer-events:none;
   }
-  .cert-card:hover{border-color:var(--amber);transform:translateY(-3px);box-shadow:0 6px 20px rgba(255,184,77,0.12);}
+  .cert-card:hover{border-color:rgba(255,184,77,0.4);transform:translateY(-3px);box-shadow:0 6px 20px rgba(255,184,77,0.08);}
   .cert-provider{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--amber);text-transform:uppercase;margin-bottom:8px;display:block;letter-spacing:0.04em;}
   .cert-card h3{font-size:1.08rem;margin-bottom:8px;color:var(--text);}
   .cert-card p{color:var(--muted);font-size:0.86rem;margin-bottom:16px;line-height:1.5;flex-grow:1;}
-  .cert-status-row{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;margin-top:12px;}
-  .cert-click-cue{color:var(--cyan);font-weight:500;}
-
-  /* MODAL */
-  .modal-overlay{
-    position:fixed;inset:0;background:rgba(11,18,32,0.85);backdrop-filter:blur(10px);
-    z-index:200;display:none;align-items:center;justify-content:center;padding:20px;
+  .cert-tag-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .cert-tag{
+    font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
+    color:var(--amber);background:rgba(255,184,77,0.06);
+    padding:3px 8px;border-radius:4px;border:1px solid rgba(255,184,77,0.15);
   }
-  .modal-overlay.open{display:flex;}
-  .modal-card{
-    background:var(--panel);border:1px solid var(--amber);border-radius:12px;padding:36px;
-    max-width:540px;width:100%;position:relative;box-shadow:0 0 40px rgba(255,184,77,0.2);
-  }
-  .modal-close{
-    position:absolute;top:18px;right:20px;background:none;border:none;color:var(--muted);
-    font-size:1.5rem;cursor:pointer;transition:color .2s;
-  }
-  .modal-close:hover{color:var(--text);}
-  .modal-card h3{font-size:1.4rem;margin-bottom:6px;color:var(--text);}
-  .modal-card .m-provider{font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--amber);margin-bottom:18px;display:block;}
-  .modal-card p{color:var(--muted);font-size:0.95rem;margin-bottom:24px;line-height:1.6;}
 
   /* EXPERIENCE TIMELINE */
   #experience{background:var(--panel);border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);}
@@ -687,16 +672,6 @@
     </div>
   </div>
 </section>
-<!-- CERTIFICATE MODAL -->
-<div class="modal-overlay" id="certModal" onclick="closeCertModal(event)">
-  <div class="modal-card" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeCertModalDirect()">×</button>
-    <span class="m-provider" id="mProvider">PROVIDER</span>
-    <h3 id="mName">Certificate Name</h3>
-    <p id="mDesc">Description</p>
-  </div>
-</div>
-
 <footer>
   <span class="mono">&copy; 2026 Muhammad Muneeb Khan</span>
   <div class="footer-links">
@@ -1360,7 +1335,7 @@
     renderProjects(cat);
   }
 
-  // Render Certifications
+  // Render Certifications (Simple cards — no modal, no click)
   function renderCerts() {
     const container = document.getElementById('certContainer');
     container.innerHTML = '';
@@ -1368,35 +1343,23 @@
     ALL_CERTS.forEach((c) => {
       const card = document.createElement('div');
       card.className = 'cert-card';
-      card.onclick = () => openCertModal(c);
+      
+      // Extract topic tags from description (first 2-3 words before comma)
+      const topics = c.desc.split(',').slice(0, 3).map(t => t.trim().split(' ').slice(0, 3).join(' '));
+      const tagHtml = topics.map(t => `<span class="cert-tag">${t}</span>`).join('');
       
       card.innerHTML = `
         <div>
           <span class="cert-provider">${c.provider}</span>
           <h3>${c.name}</h3>
+          <p>${c.desc}</p>
         </div>
-        <div class="cert-status-row">
-          <span class="cert-click-cue">View Details &#8599;</span>
+        <div class="cert-tag-row">
+          ${tagHtml}
         </div>
       `;
       container.appendChild(card);
     });
-  }
-
-  function openCertModal(c) {
-    document.getElementById('mProvider').innerText = c.provider;
-    document.getElementById('mName').innerText = c.name;
-    document.getElementById('mDesc').innerText = c.desc;
-    document.getElementById('certModal').classList.add('open');
-  }
-
-  function closeCertModal(e) {
-    if(e.target.id === 'certModal') {
-      document.getElementById('certModal').classList.remove('open');
-    }
-  }
-  function closeCertModalDirect() {
-    document.getElementById('certModal').classList.remove('open');
   }
 
   // Initialize
