@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Muhammad Muneeb Khan — AI Engineer & Telecom Site Engineer</title>
 <meta name="description" content="Portfolio of Muhammad Muneeb Khan — AI Engineer specializing in Computer Vision, NLP, Generative AI, and LLMs. Telecom Site Engineer with Huawei field experience.">
 <meta name="keywords" content="AI Engineer, Machine Learning, Deep Learning, Computer Vision, NLP, LLM, Telecom, Site Engineer, Python, PyTorch, Portfolio">
@@ -88,29 +91,17 @@
 
   /* ULTRA-SMOOTH, GENTLE SCROLL REVEAL (POPS UP SLOWLY, NOT HARD) */
   .reveal{
-    opacity:0;transform:translateY(36px);
+    opacity:0;transform:translateY(24px);
     transition:opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1), transform 1.25s cubic-bezier(0.16, 1, 0.3, 1);
     will-change:opacity, transform;
   }
-  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal.visible{opacity:1 !important;transform:translateY(0) !important;}
   
   .reveal .section-head{
-    opacity:0;transform:translateY(22px);
+    opacity:0;transform:translateY(16px);
     transition:opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
   }
-  .reveal.visible .section-head{opacity:1;transform:translateY(0);}
-
-  /* CARD POP-IN ANIMATION */
-  @keyframes cardPopInSlow{
-    0%{
-      opacity:0;
-      transform:translateY(30px) scale(0.985);
-    }
-    100%{
-      opacity:1;
-      transform:translateY(0) scale(1);
-    }
-  }
+  .reveal.visible .section-head{opacity:1 !important;transform:translateY(0) !important;}
 
   /* NAV */
   nav{
@@ -300,20 +291,20 @@
   }
   .filter-btn.active,.filter-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(76,217,192,0.08);}
 
-  .project-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(350px, 1fr));gap:24px;}
+  .project-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(340px, 1fr));gap:24px;}
   .project-card{
     background:var(--card);border:1px solid var(--card-line);border-radius:8px;padding:28px;
     display:flex;flex-direction:column;justify-content:space-between;
-    transition:transform .3s, border-color .3s, box-shadow .3s;position:relative;
-    overflow:hidden;
+    transition:transform .35s cubic-bezier(0.16, 1, 0.3, 1), border-color .3s, box-shadow .35s;position:relative;
+    overflow:hidden;opacity:1;
   }
   .project-card::before{
     content:'';position:absolute;top:0;left:0;right:0;height:3px;
     background:linear-gradient(90deg, var(--cyan), var(--amber));
-    transform:scaleX(0);transform-origin:left;transition:transform .4s;
+    transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .project-card:hover::before{transform:scaleX(1);}
-  .project-card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 8px 30px rgba(0,0,0,0.3);}
+  .project-card:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow:0 10px 30px rgba(0,0,0,0.35), 0 0 20px rgba(76,217,192,0.12);}
   .project-head{margin-bottom:16px;}
   .project-badge-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
   .pnum{font-family:'IBM Plex Mono',monospace;color:var(--cyan);font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;}
@@ -341,7 +332,7 @@
   .cert-card{
     background:var(--card);border:1px solid var(--card-line);border-radius:8px;padding:24px;
     transition:all .35s cubic-bezier(0.16, 1, 0.3, 1);display:flex;flex-direction:column;justify-content:space-between;
-    position:relative;overflow:hidden;cursor:pointer;
+    position:relative;overflow:hidden;cursor:pointer;opacity:1;
   }
   .cert-card::before{
     content:'';position:absolute;top:0;left:0;right:0;height:3px;
@@ -561,7 +552,7 @@
 
 <section id="about" class="reveal">
   <div class="section-head">
-    <div class="eyebrow">01 &#8212; About</div>
+    <div class="eyebrow">About</div>
     <h2>A dual signal.</h2>
   </div>
   <div class="about-grid">
@@ -586,7 +577,7 @@
 
 <section id="skills" class="reveal">
   <div class="section-head">
-    <div class="eyebrow">02 &#8212; Skills</div>
+    <div class="eyebrow">Technical Repertoire</div>
     <h2>Technical repertoire.</h2>
   </div>
   <div class="skills-grid">
@@ -651,7 +642,7 @@
 
 <section id="projects" class="reveal">
   <div class="section-head">
-    <div class="eyebrow">03 &#8212; Projects</div>
+    <div class="eyebrow">Projects</div>
     <h2>Projects.</h2>
   </div>
   <div class="filter-bar">
@@ -660,23 +651,791 @@
     <button class="filter-btn" onclick="filterProjects(event, 'kaggle')">Kaggle Notebooks</button>
   </div>
   <div class="project-grid" id="projectContainer">
-    <!-- Rendered dynamically via JavaScript -->
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">CAPSTONE / FYP</span>
+        </div>
+        <h3>VISION — Smart Glasses for the Blind</h3>
+        <p>AI-powered smart glasses built to give visually impaired users real-time spatial perception. A YOLOv8 object-detection pipeline identifies obstacles in the wearer's path, while a scikit-fuzzy decision layer weighs distance and approach velocity to prioritize high-risk hazards. Ultrasonic sensors add close-range depth validation, GPS handles outdoor routing, and a multilingual text-to-speech engine relays warnings.</p>
+      </div>
+      <div>
+        <div class="tech"><span>YOLOv8</span><span>scikit-fuzzy</span><span>Ultrasonic</span><span>GPS</span><span>Multilingual TTS</span><span>Raspberry Pi</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/VISION-SmartGlasses-FYP" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">AI HEALTHCARE</span>
+        </div>
+        <h3>AuraMind — Empathetic Mental Health Chatbot</h3>
+        <p>Voice-enabled conversational AI companion offering real-time emotional support and trend tracking. Uses NLP intent classification and HuggingFace sentiment analysis to gauge emotional tone dynamically, adapting chatbot response empathy while logging mood trends over time. Includes integrated emergency crisis detection protocols.</p>
+      </div>
+      <div>
+        <div class="tech"><span>NLP</span><span>HuggingFace</span><span>Sentiment Analysis</span><span>Voice I/O</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/AuraMind-Empathetic-AI" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">DEEP LEARNING</span>
+        </div>
+        <h3>Medical Disease Diagnosis Classifier (CNN)</h3>
+        <p>Deep Convolutional Neural Network (CNN) decision-support platform designed to assist clinical review by identifying conditions from medical imaging data (X-rays/CT scans). Features Grad-CAM explainability heatmaps highlighting diagnostic regions of focus for doctors.</p>
+      </div>
+      <div>
+        <div class="tech"><span>PyTorch</span><span>ResNet50</span><span>Grad-CAM</span><span>Medical Imaging</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/MedicalDiagnosis-CNN-GradCAM" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">QUANT FINANCE</span>
+        </div>
+        <h3>Stock Price Predictor (Bi-LSTM Engine)</h3>
+        <p>Quantitative time-series forecasting model using Bidirectional LSTMs for short-term stock market trend predictions. Processes historical market data alongside technical indicators (SMA, RSI, MACD, Bollinger Bands) with interactive Plotly visual charts.</p>
+      </div>
+      <div>
+        <div class="tech"><span>LSTM</span><span>Bi-LSTM</span><span>yfinance</span><span>Plotly</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/StockForecast-LSTM-Engine" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">COMPUTER VISION</span>
+        </div>
+        <h3>YOLOv8 AI Image Classifier & Detection ONNX</h3>
+        <p>End-to-end computer vision pipeline applying transfer learning with YOLOv8 for multi-class image classification and object detection. Includes custom dataset augmentation, evaluation metrics plotting, and ONNX runtime export for edge deployment.</p>
+      </div>
+      <div>
+        <div class="tech"><span>YOLOv8</span><span>ONNX Export</span><span>Transfer Learning</span><span>OpenCV</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/YOLOv8-Classifier-ONNX" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">ACADEMIC CONCEPT</span>
+        </div>
+        <h3>IronDome-MDV — Simulated Aerial Threat Tracker</h3>
+        <p>Small-scale university concept project exploring simulated aerial threat detection and target tracking. Combines synthetic radar telemetry, YOLOv11 computer vision pipeline, Kalman filter trajectory prediction, and sensor fusion logic.</p>
+      </div>
+      <div>
+        <div class="tech"><span>YOLOv11</span><span>Kalman Filter</span><span>Sensor Fusion</span><span>Radar Sim</span><span>Python</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/IronDome-MDV-Simulator" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">TELECOM 5G</span>
+        </div>
+        <h3>AI-Powered 5G Network Optimization System</h3>
+        <p>5G NR resource allocation system using Deep Q-Learning (DQN) Reinforcement Learning paired with an LSTM time-series traffic congestion predictor. Optimizes dynamic spectrum slicing and handover events to minimize latency spikes.</p>
+      </div>
+      <div>
+        <div class="tech"><span>5G NR</span><span>Deep Q-Learning</span><span>LSTM</span><span>Network Slicing</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/5G-NetworkOptimizer-RL" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">TELECOM 6G</span>
+        </div>
+        <h3>6G Telecom Customer Churn Prediction Engine</h3>
+        <p>6G-era customer retention analytics pipeline incorporating next-gen network quality metrics (THz signal quality, holographic communication volume, AI-native network score) with XGBoost, LightGBM, and SHAP explainability values.</p>
+      </div>
+      <div>
+        <div class="tech"><span>XGBoost</span><span>LightGBM</span><span>SHAP</span><span>6G Metrics</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/6G-TelecomChurn-Analytics" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">TELECOM SECURITY</span>
+        </div>
+        <h3>4G/5G Network Anomaly Detection System</h3>
+        <p>Real-time telecom infrastructure anomaly and cyber-threat detector. Uses deep Autoencoders and Isolation Forests to flag DDoS attacks, latency spikes, and hardware faults with severity alerts.</p>
+      </div>
+      <div>
+        <div class="tech"><span>Autoencoders</span><span>Isolation Forest</span><span>Cyber Security</span><span>Plotly</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/Telecom-AnomalyDetection-4G5G" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">GENERATIVE AI</span>
+        </div>
+        <h3>RAG Document Q&A System</h3>
+        <p>Retrieval-Augmented Generation (RAG) platform enabling contextual Q&A across multi-format documents (PDF/TXT/DOCX). Leverages LangChain, FAISS vector embeddings, conversational memory buffers, and Streamlit web UI.</p>
+      </div>
+      <div>
+        <div class="tech"><span>LangChain</span><span>FAISS</span><span>Embeddings</span><span>PDF Parser</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/RAG-DocQA-LangChain" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">GENERATIVE AI</span>
+        </div>
+        <h3>LLM Fine-Tuning Pipeline (LoRA / QLoRA)</h3>
+        <p>Parameter-efficient fine-tuning (PEFT) pipeline using LoRA and 4-bit QLoRA quantization for open-weight LLMs (Llama-2, Mistral-7B). Reduces VRAM footprint by 65% while maintaining generation quality.</p>
+      </div>
+      <div>
+        <div class="tech"><span>PEFT</span><span>QLoRA</span><span>BitsAndBytes</span><span>HuggingFace</span><span>PyTorch</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/LLM-FineTuning-QLoRA" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">AI AGENTS</span>
+        </div>
+        <h3>Multi-Agent Autonomous AI Research Workforce</h3>
+        <p>Multi-agent autonomous system built with CrewAI and LangChain. Specialized agents (Researcher, Writer, Reviewer, Editor) collaborate using structured task delegation and external tools to produce automated research papers.</p>
+      </div>
+      <div>
+        <div class="tech"><span>CrewAI</span><span>LangChain</span><span>Multi-Agent</span><span>Task Delegation</span><span>Python</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/MultiAgent-ResearchWorkforce" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">GENERATIVE AI</span>
+        </div>
+        <h3>Natural Language to SQL Query Engine</h3>
+        <p>Text-to-SQL query generator using LLMs and few-shot prompting. Parses database schema metadata automatically to convert plain English user questions into optimized executable SQL queries.</p>
+      </div>
+      <div>
+        <div class="tech"><span>LLM</span><span>SQLAlchemy</span><span>SQLite</span><span>Few-Shot</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/Text2SQL-LLM-Generator" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">GENERATIVE AI</span>
+        </div>
+        <h3>Agentic RAG System (LangGraph + ReAct)</h3>
+        <p>Autonomous Agentic RAG system featuring self-reflection, document relevance grading, multi-vector routing, and Tavily web search fallback when vector database context is insufficient.</p>
+      </div>
+      <div>
+        <div class="tech"><span>LangGraph</span><span>ReAct Agent</span><span>Tavily Search</span><span>Qdrant</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/AgenticRAG-LangGraph" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">MULTIMODAL AI</span>
+        </div>
+        <h3>Multimodal Vision LLM & Visual Q&A</h3>
+        <p>Multimodal Visual Question Answering (VQA) and document reasoning application leveraging Qwen2-VL and OpenAI CLIP models for complex visual scene understanding.</p>
+      </div>
+      <div>
+        <div class="tech"><span>Qwen2-VL</span><span>CLIP</span><span>Vision LLM</span><span>PyTorch</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/VisionLLM-VQA-System" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">DEV TOOLS</span>
+        </div>
+        <h3>Autonomous AI Code Reviewer & Security Scanner</h3>
+        <p>Static code analysis and security inspection bot. Parses Python AST syntax trees to identify code complexity, arbitrary execution vulnerabilities, and SQL injection risks.</p>
+      </div>
+      <div>
+        <div class="tech"><span>AST Parsing</span><span>Static Security</span><span>Radon</span><span>Bandit</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/AICodeReviewer-SecurityScanner" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">QUANTUM AI</span>
+        </div>
+        <h3>Quantum ML & Variational Quantum Classifier</h3>
+        <p>Quantum Machine Learning simulator implementing Variational Quantum Circuits (VQC) and Quantum Neural Networks (QNN) using PennyLane and Qiskit frameworks.</p>
+      </div>
+      <div>
+        <div class="tech"><span>PennyLane</span><span>Qiskit</span><span>Quantum Computing</span><span>VQC</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/QuantumML-VQC-Simulator" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">AUDIO AI</span>
+        </div>
+        <h3>Real-time Speech-to-Speech AI Pipeline</h3>
+        <p>Sub-500ms low-latency speech-to-speech voice agent pipeline combining Whisper STT, Llama-3 LLM reasoning, and XTTS-v2 streaming voice synthesis.</p>
+      </div>
+      <div>
+        <div class="tech"><span>Whisper STT</span><span>Llama-3</span><span>XTTS-v2</span><span>Audio Stream</span><span>PyTorch</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/Realtime-Speech2Speech-AI" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">MLOPS</span>
+        </div>
+        <h3>End-to-End Production MLOps Pipeline</h3>
+        <p>Production-grade MLOps workflow automating data ingestion, DVC versioning, MLflow experiment tracking, Docker containerization, FastAPI model deployment, and GitHub Actions CI/CD.</p>
+      </div>
+      <div>
+        <div class="tech"><span>MLflow</span><span>DVC</span><span>Docker</span><span>FastAPI</span><span>GitHub Actions</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/MLOps-ProductionPipeline" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">NLP</span>
+        </div>
+        <h3>AI Resume Parser & Skill Matcher</h3>
+        <p>AI resume parsing REST API built with FastAPI and SpaCy custom Named Entity Recognition (NER) models. Extracts contact info, skills, education, and matches candidates against job postings.</p>
+      </div>
+      <div>
+        <div class="tech"><span>SpaCy NER</span><span>FastAPI</span><span>NLP</span><span>PDF Parser</span><span>Python</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/AI-ResumeParser-FastAPI" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">NLP</span>
+        </div>
+        <h3>Real-time Sentiment Analytics Dashboard</h3>
+        <p>Interactive sentiment analysis web app leveraging HuggingFace Transformers for aspect-based sentiment prediction, CSV batch processing, word cloud generation, and Plotly charts.</p>
+      </div>
+      <div>
+        <div class="tech"><span>HuggingFace</span><span>Transformers</span><span>Plotly</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/SentimentAnalytics-Dashboard" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">NLP</span>
+        </div>
+        <h3>Fake News & Credibility Classifier</h3>
+        <p>News article credibility classifier benchmarking fine-tuned DistilBERT models against baseline Logistic Regression classifiers with probability scoring and explanation metrics.</p>
+      </div>
+      <div>
+        <div class="tech"><span>DistilBERT</span><span>PyTorch</span><span>Scikit-Learn</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/FakeNewsDetector-NLP" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">COMPUTER VISION</span>
+        </div>
+        <h3>AI Multimodal Image Captioning System</h3>
+        <p>Multimodal vision-language application powered by BLIP and ViT-GPT2 for automated image caption generation with descriptive, creative, and technical output styling.</p>
+      </div>
+      <div>
+        <div class="tech"><span>BLIP</span><span>ViT-GPT2</span><span>Multimodal AI</span><span>Streamlit</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/Multimodal-ImageCaptioner" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">COMPUTER VISION</span>
+        </div>
+        <h3>YOLOv8 Real-Time Object Detection Pipeline</h3>
+        <p>Real-time object detection system using YOLOv8 with custom dataset training pipeline, data augmentation, precision-recall curve plotting, and live webcam stream inference.</p>
+      </div>
+      <div>
+        <div class="tech"><span>YOLOv8</span><span>OpenCV</span><span>Webcam Stream</span><span>PyTorch</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/YOLOv8-ObjectDetection-Pipeline" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="github">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">ALGORITHMS & MATH</span>
+        </div>
+        <h3>Fibonacci Series Suite & Matrix Exponentiation</h3>
+        <p>High-performance sequence generation suite implementing space-optimized iterative pipelines, memoized dynamic programming, and logarithmic O(log n) 2x2 matrix binary powering for astronomical term values.</p>
+      </div>
+      <div>
+        <div class="tech"><span>Python</span><span>Dynamic Programming</span><span>Matrix Exponentiation</span><span>Benchmarking</span><span>Algorithms</span></div>
+        <div class="card-footer">
+          <a href="https://github.com/iMuneebK/Fabonacci-Series-Generator" target="_blank" rel="noopener" class="project-link-btn">
+            View on GitHub Repo &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="kaggle">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">KAGGLE COMPETITION</span>
+        </div>
+        <h3>Titanic Survival Prediction (Advanced Stacking)</h3>
+        <p>Competitive Kaggle notebook featuring comprehensive feature engineering (title extraction, family binning, cabin deck) and a stacked ensemble of XGBoost, LightGBM, and Random Forest.</p>
+      </div>
+      <div>
+        <div class="tech"><span>Feature Engineering</span><span>Stacking Ensemble</span><span>XGBoost</span><span>LightGBM</span></div>
+        <div class="card-footer">
+          <a href="https://www.kaggle.com/mmuneebkhan154/code" target="_blank" rel="noopener" class="project-link-btn kaggle">
+            View on Kaggle Profile &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="kaggle">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">KAGGLE COMPETITION</span>
+        </div>
+        <h3>House Prices Advanced Regression Pipeline</h3>
+        <p>Tabular regression pipeline featuring missing data imputation, skewness log-transformation, polynomial feature generation, and blended ensemble predictions (Ridge, Lasso, ElasticNet, Gradient Boosting).</p>
+      </div>
+      <div>
+        <div class="tech"><span>Tabular ML</span><span>Ridge / Lasso</span><span>Gradient Boosting</span><span>Blending</span></div>
+        <div class="card-footer">
+          <a href="https://www.kaggle.com/mmuneebkhan154/code" target="_blank" rel="noopener" class="project-link-btn kaggle">
+            View on Kaggle Profile &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="kaggle">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">KAGGLE COMPETITION</span>
+        </div>
+        <h3>NLP Disaster Tweets Classification</h3>
+        <p>Text classification pipeline analyzing disaster social media posts using TF-IDF, Word Embeddings, Bidirectional LSTMs, and fine-tuned BERT models.</p>
+      </div>
+      <div>
+        <div class="tech"><span>NLP</span><span>TF-IDF</span><span>Bi-LSTM</span><span>BERT Fine-Tuning</span></div>
+        <div class="card-footer">
+          <a href="https://www.kaggle.com/mmuneebkhan154/code" target="_blank" rel="noopener" class="project-link-btn kaggle">
+            View on Kaggle Profile &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="kaggle">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">KAGGLE COMPETITION</span>
+        </div>
+        <h3>Credit Card Fraud Detection (Imbalanced Data)</h3>
+        <p>Financial fraud detection pipeline tackling severe class imbalance using SMOTE resampling, Autoencoders for anomaly detection, Isolation Forests, and Precision-Recall thresholding.</p>
+      </div>
+      <div>
+        <div class="tech"><span>Imbalanced Learning</span><span>SMOTE</span><span>Autoencoders</span><span>Isolation Forest</span></div>
+        <div class="card-footer">
+          <a href="https://www.kaggle.com/mmuneebkhan154/code" target="_blank" rel="noopener" class="project-link-btn kaggle">
+            View on Kaggle Profile &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="kaggle">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">KAGGLE COMPETITION</span>
+        </div>
+        <h3>Plant Disease Image Classification (ResNet50)</h3>
+        <p>Computer vision notebook benchmarking custom CNN architectures against pretrained ResNet50 models for agricultural crop disease classification with Grad-CAM visual explainability.</p>
+      </div>
+      <div>
+        <div class="tech"><span>Computer Vision</span><span>ResNet50</span><span>Transfer Learning</span><span>Grad-CAM</span></div>
+        <div class="card-footer">
+          <a href="https://www.kaggle.com/mmuneebkhan154/code" target="_blank" rel="noopener" class="project-link-btn kaggle">
+            View on Kaggle Profile &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="kaggle">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">KAGGLE NLP</span>
+        </div>
+        <h3>CommonLit Student Summaries Scoring (DeBERTa)</h3>
+        <p>Automated student reading comprehension and summary scoring using fine-tuned DeBERTa-v3 with custom regression heads, MCRMSE loss optimization, and stratified cross-validation.</p>
+      </div>
+      <div>
+        <div class="tech"><span>DeBERTa-v3</span><span>HuggingFace</span><span>PyTorch</span><span>NLP</span><span>Cross-Validation</span></div>
+        <div class="card-footer">
+          <a href="https://www.kaggle.com/mmuneebkhan154/code" target="_blank" rel="noopener" class="project-link-btn kaggle">
+            View on Kaggle Profile &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="kaggle">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">KAGGLE NLP</span>
+        </div>
+        <h3>LLM Detect AI-Generated Text (DeBERTa Ensemble)</h3>
+        <p>Ensemble classification system distinguishing student essays from AI-generated prose using token length distribution, TF-IDF byte-pair n-grams, and fine-tuned DeBERTa language models.</p>
+      </div>
+      <div>
+        <div class="tech"><span>LLM Detection</span><span>DeBERTa</span><span>TF-IDF</span><span>Ensemble</span><span>ROC-AUC</span></div>
+        <div class="card-footer">
+          <a href="https://www.kaggle.com/mmuneebkhan154/code" target="_blank" rel="noopener" class="project-link-btn kaggle">
+            View on Kaggle Profile &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="kaggle">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">KAGGLE VISION</span>
+        </div>
+        <h3>ISIC 2024 Skin Cancer Detection (Swin Transformer)</h3>
+        <p>Dermoscopic image classification predicting malignancy risk via Swin Transformer transfer learning, balanced focal loss for minority class handling, and partial AUC metric optimization.</p>
+      </div>
+      <div>
+        <div class="tech"><span>Swin Transformer</span><span>Computer Vision</span><span>Transfer Learning</span><span>Medical AI</span></div>
+        <div class="card-footer">
+          <a href="https://www.kaggle.com/mmuneebkhan154/code" target="_blank" rel="noopener" class="project-link-btn kaggle">
+            View on Kaggle Profile &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="kaggle">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">KAGGLE TIME-SERIES</span>
+        </div>
+        <h3>Optiver Trading Signal & Volatility Forecasting</h3>
+        <p>Quantitative high-frequency order book and trade volume analytics pipeline engineering weighted mid-price features and training LightGBM models for stock price move predictions.</p>
+      </div>
+      <div>
+        <div class="tech"><span>Quantitative Finance</span><span>LightGBM</span><span>Order Book Analytics</span><span>Feature Engineering</span></div>
+        <div class="card-footer">
+          <a href="https://www.kaggle.com/mmuneebkhan154/code" target="_blank" rel="noopener" class="project-link-btn kaggle">
+            View on Kaggle Profile &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" data-category="kaggle">
+      <div class="project-head">
+        <div class="project-badge-row">
+          <span class="pnum">PROJECT</span>
+          <span class="ptype">KAGGLE VISION</span>
+        </div>
+        <h3>RSNA Abdominal Trauma Detection (3D CNN)</h3>
+        <p>Multi-organ trauma assessment from 3D abdominal CT scans using 3D convolutional networks, slice-level feature aggregation, and patient-level injury severity grading.</p>
+      </div>
+      <div>
+        <div class="tech"><span>3D CNN</span><span>Medical Imaging</span><span>CT Scan Analysis</span><span>PyTorch</span><span>Grad-CAM</span></div>
+        <div class="card-footer">
+          <a href="https://www.kaggle.com/mmuneebkhan154/code" target="_blank" rel="noopener" class="project-link-btn kaggle">
+            View on Kaggle Profile &#8599;
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="certifications" class="reveal">
   <div class="section-head">
-    <div class="eyebrow">04 &#8212; Continuous Learning</div>
+    <div class="eyebrow">Continuous Learning</div>
     <h2>Courses & Specialized Training.</h2>
   </div>
   <div class="cert-grid" id="certContainer">
-    <!-- Rendered dynamically via JavaScript -->
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(0);}">
+      <div>
+        <span class="cert-provider">Google (Coursera)</span>
+        <h3>Google AI Essentials</h3>
+        <p>Foundational AI principles, prompt engineering, generative AI workflows, and responsible AI implementation.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(1)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(1);}">
+      <div>
+        <span class="cert-provider">Google Cloud Skills Boost</span>
+        <h3>Google Cloud AI/ML Skills</h3>
+        <p>Hands-on labs for Vertex AI, BigQuery ML, custom model training, and Cloud Vision API deployment.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(2)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(2);}">
+      <div>
+        <span class="cert-provider">IBM (SkillsBuild)</span>
+        <h3>IBM AI Fundamentals</h3>
+        <p>Core artificial intelligence concepts, neural networks, machine learning algorithms, and ethical AI governance.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(3)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(3);}">
+      <div>
+        <span class="cert-provider">Google</span>
+        <h3>Crash Course of Python</h3>
+        <p>Python programming language fundamentals, data structures, object-oriented concepts, and automation scripting.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(4)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(4);}">
+      <div>
+        <span class="cert-provider">HuggingFace</span>
+        <h3>HuggingFace NLP Course</h3>
+        <p>Advanced Natural Language Processing using Transformers, Datasets, Evaluate, and model fine-tuning for Hub deployment.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(5)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(5);}">
+      <div>
+        <span class="cert-provider">Andrew Ng (DeepLearning.AI)</span>
+        <h3>DeepLearning.AI Short Courses</h3>
+        <p>Specialized micro-courses covering RAG, Prompt Engineering, Vector Databases, and Multi-Agent Orchestration.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(6)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(6);}">
+      <div>
+        <span class="cert-provider">AWS (Udacity / Coursera)</span>
+        <h3>AWS Machine Learning Foundations</h3>
+        <p>AWS Machine Learning stack, Amazon SageMaker, Computer Vision, and Reinforcement Learning on AWS cloud.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(7)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(7);}">
+      <div>
+        <span class="cert-provider">NVIDIA</span>
+        <h3>NVIDIA Deep Learning Institute (DLI)</h3>
+        <p>GPU-accelerated deep learning model training, CUDA acceleration, and Computer Vision pipeline optimization.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(8)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(8);}">
+      <div>
+        <span class="cert-provider">Google (Coursera)</span>
+        <h3>TensorFlow Developer Certificate Prep</h3>
+        <p>Deep Neural Networks, Computer Vision CNNs, Time Series LSTMs, and NLP sequence modeling with TensorFlow 2.x.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(9)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(9);}">
+      <div>
+        <span class="cert-provider">University of Helsinki</span>
+        <h3>Elements of AI</h3>
+        <p>Comprehensive introduction to AI logic, Bayes rule, neural network design, and real-world societal AI impact.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(10)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(10);}">
+      <div>
+        <span class="cert-provider">Kaggle (Google)</span>
+        <h3>Kaggle Micro-Courses</h3>
+        <p>Hands-on certificates in Python, Pandas, Data Visualization, Intro to ML, Intermediate ML, and Feature Engineering.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(11)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(11);}">
+      <div>
+        <span class="cert-provider">Harvard (edX)</span>
+        <h3>Harvard CS50 AI with Python</h3>
+        <p>Graph search algorithms, minimax adversarial search, constraint satisfaction, machine learning, and neural networks.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(12)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(12);}">
+      <div>
+        <span class="cert-provider">Stanford (Coursera)</span>
+        <h3>Stanford CS229 Machine Learning</h3>
+        <p>Supervised learning, unsupervised learning, deep learning best practices, SVMs, decision trees, and ML system design.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
+    <div class="cert-card" role="button" tabindex="0" onclick="openCertModal(13)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCertModal(13);}">
+      <div>
+        <span class="cert-provider">Fast.ai</span>
+        <h3>Fast.ai Practical Deep Learning</h3>
+        <p>Practical deep learning for coders using PyTorch and fastai, training state-of-the-art vision, NLP, and tabular models.</p>
+      </div>
+      <div class="cert-click-cue">
+        <span>View curriculum & details</span> &rarr;
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="experience" class="reveal">
   <div class="section-head">
-    <div class="eyebrow">05 &#8212; Experience</div>
+    <div class="eyebrow">Experience</div>
     <h2>Field & engineering track.</h2>
   </div>
   <div class="timeline">
@@ -727,7 +1486,7 @@
 
 <section id="education" class="reveal">
   <div class="section-head">
-    <div class="eyebrow">06 &#8212; Education</div>
+    <div class="eyebrow">Education</div>
     <h2>Academic background.</h2>
   </div>
   <div class="edu-grid">
@@ -756,7 +1515,7 @@
 
 <section id="contact" class="reveal">
   <div class="section-head">
-    <div class="eyebrow">07 &#8212; Contact</div>
+    <div class="eyebrow">Contact</div>
     <h2>Let's talk.</h2>
   </div>
   <div class="contact-wrap">
@@ -825,10 +1584,12 @@
   // Nav toggle
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
-  navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
-  const navLinks = navMenu.querySelectorAll('a');
-  for(let i=0; i<navLinks.length; i++) {
-    navLinks[i].addEventListener('click', () => navMenu.classList.remove('open'));
+  if(navToggle && navMenu) {
+    navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
+    const navLinks = navMenu.querySelectorAll('a');
+    for(let i=0; i<navLinks.length; i++) {
+      navLinks[i].addEventListener('click', () => navMenu.classList.remove('open'));
+    }
   }
 
   // Shrink nav on scroll
@@ -836,22 +1597,22 @@
   const backTop = document.getElementById('backTop');
   window.addEventListener('scroll', () => {
     if(window.scrollY > 80) {
-      nav.classList.add('scrolled');
-      backTop.classList.add('show');
+      if(nav) nav.classList.add('scrolled');
+      if(backTop) backTop.classList.add('show');
     } else {
-      nav.classList.remove('scrolled');
-      backTop.classList.remove('show');
+      if(nav) nav.classList.remove('scrolled');
+      if(backTop) backTop.classList.remove('show');
     }
-  });
+  }, { passive: true });
 
-  // Scroll reveal
+  // Scroll reveal with threshold 0 and positive rootMargin for 100% mobile compatibility
   try {
     if (window.IntersectionObserver) {
       const observer = new IntersectionObserver((entries) => {
         for(let i=0; i<entries.length; i++) {
           if(entries[i].isIntersecting) entries[i].target.classList.add('visible');
         }
-      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      }, { threshold: 0, rootMargin: '0px 0px 150px 0px' });
       const reveals = document.querySelectorAll('.reveal');
       for(let i=0; i<reveals.length; i++) observer.observe(reveals[i]);
     } else {
@@ -862,6 +1623,24 @@
     const reveals = document.querySelectorAll('.reveal');
     for(let i=0; i<reveals.length; i++) reveals[i].classList.add('visible');
   }
+
+  // Backup reveal on scroll for maximum mobile compatibility
+  window.addEventListener('scroll', () => {
+    const reveals = document.querySelectorAll('.reveal:not(.visible)');
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    for(let i=0; i<reveals.length; i++) {
+      const rect = reveals[i].getBoundingClientRect();
+      if(rect.top <= vh + 100) {
+        reveals[i].classList.add('visible');
+      }
+    }
+  }, { passive: true });
+
+  // Unconditional failsafe timer: ensures everything becomes visible without delay
+  setTimeout(() => {
+    const reveals = document.querySelectorAll('.reveal');
+    for(let i=0; i<reveals.length; i++) reveals[i].classList.add('visible');
+  }, 350);
 
   // Typing animation
   try {
@@ -903,524 +1682,26 @@
     }
   } catch(e) { console.error("Typing animation error", e); }
 
-  // Data
-  const ALL_PROJECTS = [
-  {
-    "title": "VISION \u2014 Smart Glasses for the Blind",
-    "category": "github",
-    "tag": "CAPSTONE / FYP",
-    "desc": "AI-powered smart glasses built to give visually impaired users real-time spatial perception. A YOLOv8 object-detection pipeline identifies obstacles in the wearer's path, while a scikit-fuzzy decision layer weighs distance and approach velocity to prioritize high-risk hazards. Ultrasonic sensors add close-range depth validation, GPS handles outdoor routing, and a multilingual text-to-speech engine relays warnings.",
-    "tech": [
-      "YOLOv8",
-      "scikit-fuzzy",
-      "Ultrasonic",
-      "GPS",
-      "Multilingual TTS",
-      "Raspberry Pi"
-    ],
-    "link": "https://github.com/iMuneebK/VISION-SmartGlasses-FYP",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "AuraMind \u2014 Empathetic Mental Health Chatbot",
-    "category": "github",
-    "tag": "AI HEALTHCARE",
-    "desc": "Voice-enabled conversational AI companion offering real-time emotional support and trend tracking. Uses NLP intent classification and HuggingFace sentiment analysis to gauge emotional tone dynamically, adapting chatbot response empathy while logging mood trends over time. Includes integrated emergency crisis detection protocols.",
-    "tech": [
-      "NLP",
-      "HuggingFace",
-      "Sentiment Analysis",
-      "Voice I/O",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/AuraMind-Empathetic-AI",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Medical Disease Diagnosis Classifier (CNN)",
-    "category": "github",
-    "tag": "DEEP LEARNING",
-    "desc": "Deep Convolutional Neural Network (CNN) decision-support platform designed to assist clinical review by identifying conditions from medical imaging data (X-rays/CT scans). Features Grad-CAM explainability heatmaps highlighting diagnostic regions of focus for doctors.",
-    "tech": [
-      "PyTorch",
-      "ResNet50",
-      "Grad-CAM",
-      "Medical Imaging",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/MedicalDiagnosis-CNN-GradCAM",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Stock Price Predictor (Bi-LSTM Engine)",
-    "category": "github",
-    "tag": "QUANT FINANCE",
-    "desc": "Quantitative time-series forecasting model using Bidirectional LSTMs for short-term stock market trend predictions. Processes historical market data alongside technical indicators (SMA, RSI, MACD, Bollinger Bands) with interactive Plotly visual charts.",
-    "tech": [
-      "LSTM",
-      "Bi-LSTM",
-      "yfinance",
-      "Plotly",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/StockForecast-LSTM-Engine",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "YOLOv8 AI Image Classifier & Detection ONNX",
-    "category": "github",
-    "tag": "COMPUTER VISION",
-    "desc": "End-to-end computer vision pipeline applying transfer learning with YOLOv8 for multi-class image classification and object detection. Includes custom dataset augmentation, evaluation metrics plotting, and ONNX runtime export for edge deployment.",
-    "tech": [
-      "YOLOv8",
-      "ONNX Export",
-      "Transfer Learning",
-      "OpenCV",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/YOLOv8-Classifier-ONNX",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "IronDome-MDV \u2014 Simulated Aerial Threat Tracker",
-    "category": "github",
-    "tag": "ACADEMIC CONCEPT",
-    "desc": "Small-scale university concept project exploring simulated aerial threat detection and target tracking. Combines synthetic radar telemetry, YOLOv11 computer vision pipeline, Kalman filter trajectory prediction, and sensor fusion logic.",
-    "tech": [
-      "YOLOv11",
-      "Kalman Filter",
-      "Sensor Fusion",
-      "Radar Sim",
-      "Python"
-    ],
-    "link": "https://github.com/iMuneebK/IronDome-MDV-Simulator",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "AI-Powered 5G Network Optimization System",
-    "category": "github",
-    "tag": "TELECOM 5G",
-    "desc": "5G NR resource allocation system using Deep Q-Learning (DQN) Reinforcement Learning paired with an LSTM time-series traffic congestion predictor. Optimizes dynamic spectrum slicing and handover events to minimize latency spikes.",
-    "tech": [
-      "5G NR",
-      "Deep Q-Learning",
-      "LSTM",
-      "Network Slicing",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/5G-NetworkOptimizer-RL",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "6G Telecom Customer Churn Prediction Engine",
-    "category": "github",
-    "tag": "TELECOM 6G",
-    "desc": "6G-era customer retention analytics pipeline incorporating next-gen network quality metrics (THz signal quality, holographic communication volume, AI-native network score) with XGBoost, LightGBM, and SHAP explainability values.",
-    "tech": [
-      "XGBoost",
-      "LightGBM",
-      "SHAP",
-      "6G Metrics",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/6G-TelecomChurn-Analytics",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "4G/5G Network Anomaly Detection System",
-    "category": "github",
-    "tag": "TELECOM SECURITY",
-    "desc": "Real-time telecom infrastructure anomaly and cyber-threat detector. Uses deep Autoencoders and Isolation Forests to flag DDoS attacks, latency spikes, and hardware faults with severity alerts.",
-    "tech": [
-      "Autoencoders",
-      "Isolation Forest",
-      "Cyber Security",
-      "Plotly",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/Telecom-AnomalyDetection-4G5G",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "RAG Document Q&A System",
-    "category": "github",
-    "tag": "GENERATIVE AI",
-    "desc": "Retrieval-Augmented Generation (RAG) platform enabling contextual Q&A across multi-format documents (PDF/TXT/DOCX). Leverages LangChain, FAISS vector embeddings, conversational memory buffers, and Streamlit web UI.",
-    "tech": [
-      "LangChain",
-      "FAISS",
-      "Embeddings",
-      "PDF Parser",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/RAG-DocQA-LangChain",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "LLM Fine-Tuning Pipeline (LoRA / QLoRA)",
-    "category": "github",
-    "tag": "GENERATIVE AI",
-    "desc": "Parameter-efficient fine-tuning (PEFT) pipeline using LoRA and 4-bit QLoRA quantization for open-weight LLMs (Llama-2, Mistral-7B). Reduces VRAM footprint by 65% while maintaining generation quality.",
-    "tech": [
-      "PEFT",
-      "QLoRA",
-      "BitsAndBytes",
-      "HuggingFace",
-      "PyTorch"
-    ],
-    "link": "https://github.com/iMuneebK/LLM-FineTuning-QLoRA",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Multi-Agent Autonomous AI Research Workforce",
-    "category": "github",
-    "tag": "AI AGENTS",
-    "desc": "Multi-agent autonomous system built with CrewAI and LangChain. Specialized agents (Researcher, Writer, Reviewer, Editor) collaborate using structured task delegation and external tools to produce automated research papers.",
-    "tech": [
-      "CrewAI",
-      "LangChain",
-      "Multi-Agent",
-      "Task Delegation",
-      "Python"
-    ],
-    "link": "https://github.com/iMuneebK/MultiAgent-ResearchWorkforce",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Natural Language to SQL Query Engine",
-    "category": "github",
-    "tag": "GENERATIVE AI",
-    "desc": "Text-to-SQL query generator using LLMs and few-shot prompting. Parses database schema metadata automatically to convert plain English user questions into optimized executable SQL queries.",
-    "tech": [
-      "LLM",
-      "SQLAlchemy",
-      "SQLite",
-      "Few-Shot",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/Text2SQL-LLM-Generator",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Agentic RAG System (LangGraph + ReAct)",
-    "category": "github",
-    "tag": "GENERATIVE AI",
-    "desc": "Autonomous Agentic RAG system featuring self-reflection, document relevance grading, multi-vector routing, and Tavily web search fallback when vector database context is insufficient.",
-    "tech": [
-      "LangGraph",
-      "ReAct Agent",
-      "Tavily Search",
-      "Qdrant",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/AgenticRAG-LangGraph",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Multimodal Vision LLM & Visual Q&A",
-    "category": "github",
-    "tag": "MULTIMODAL AI",
-    "desc": "Multimodal Visual Question Answering (VQA) and document reasoning application leveraging Qwen2-VL and OpenAI CLIP models for complex visual scene understanding.",
-    "tech": [
-      "Qwen2-VL",
-      "CLIP",
-      "Vision LLM",
-      "PyTorch",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/VisionLLM-VQA-System",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Autonomous AI Code Reviewer & Security Scanner",
-    "category": "github",
-    "tag": "DEV TOOLS",
-    "desc": "Static code analysis and security inspection bot. Parses Python AST syntax trees to identify code complexity, arbitrary execution vulnerabilities, and SQL injection risks.",
-    "tech": [
-      "AST Parsing",
-      "Static Security",
-      "Radon",
-      "Bandit",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/AICodeReviewer-SecurityScanner",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Quantum ML & Variational Quantum Classifier",
-    "category": "github",
-    "tag": "QUANTUM AI",
-    "desc": "Quantum Machine Learning simulator implementing Variational Quantum Circuits (VQC) and Quantum Neural Networks (QNN) using PennyLane and Qiskit frameworks.",
-    "tech": [
-      "PennyLane",
-      "Qiskit",
-      "Quantum Computing",
-      "VQC",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/QuantumML-VQC-Simulator",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Real-time Speech-to-Speech AI Pipeline",
-    "category": "github",
-    "tag": "AUDIO AI",
-    "desc": "Sub-500ms low-latency speech-to-speech voice agent pipeline combining Whisper STT, Llama-3 LLM reasoning, and XTTS-v2 streaming voice synthesis.",
-    "tech": [
-      "Whisper STT",
-      "Llama-3",
-      "XTTS-v2",
-      "Audio Stream",
-      "PyTorch"
-    ],
-    "link": "https://github.com/iMuneebK/Realtime-Speech2Speech-AI",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "End-to-End Production MLOps Pipeline",
-    "category": "github",
-    "tag": "MLOPS",
-    "desc": "Production-grade MLOps workflow automating data ingestion, DVC versioning, MLflow experiment tracking, Docker containerization, FastAPI model deployment, and GitHub Actions CI/CD.",
-    "tech": [
-      "MLflow",
-      "DVC",
-      "Docker",
-      "FastAPI",
-      "GitHub Actions"
-    ],
-    "link": "https://github.com/iMuneebK/MLOps-ProductionPipeline",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "AI Resume Parser & Skill Matcher",
-    "category": "github",
-    "tag": "NLP",
-    "desc": "AI resume parsing REST API built with FastAPI and SpaCy custom Named Entity Recognition (NER) models. Extracts contact info, skills, education, and matches candidates against job postings.",
-    "tech": [
-      "SpaCy NER",
-      "FastAPI",
-      "NLP",
-      "PDF Parser",
-      "Python"
-    ],
-    "link": "https://github.com/iMuneebK/AI-ResumeParser-FastAPI",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Real-time Sentiment Analytics Dashboard",
-    "category": "github",
-    "tag": "NLP",
-    "desc": "Interactive sentiment analysis web app leveraging HuggingFace Transformers for aspect-based sentiment prediction, CSV batch processing, word cloud generation, and Plotly charts.",
-    "tech": [
-      "HuggingFace",
-      "Transformers",
-      "Plotly",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/SentimentAnalytics-Dashboard",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Fake News & Credibility Classifier",
-    "category": "github",
-    "tag": "NLP",
-    "desc": "News article credibility classifier benchmarking fine-tuned DistilBERT models against baseline Logistic Regression classifiers with probability scoring and explanation metrics.",
-    "tech": [
-      "DistilBERT",
-      "PyTorch",
-      "Scikit-Learn",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/FakeNewsDetector-NLP",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "AI Multimodal Image Captioning System",
-    "category": "github",
-    "tag": "COMPUTER VISION",
-    "desc": "Multimodal vision-language application powered by BLIP and ViT-GPT2 for automated image caption generation with descriptive, creative, and technical output styling.",
-    "tech": [
-      "BLIP",
-      "ViT-GPT2",
-      "Multimodal AI",
-      "Streamlit"
-    ],
-    "link": "https://github.com/iMuneebK/Multimodal-ImageCaptioner",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "YOLOv8 Real-Time Object Detection Pipeline",
-    "category": "github",
-    "tag": "COMPUTER VISION",
-    "desc": "Real-time object detection system using YOLOv8 with custom dataset training pipeline, data augmentation, precision-recall curve plotting, and live webcam stream inference.",
-    "tech": [
-      "YOLOv8",
-      "OpenCV",
-      "Webcam Stream",
-      "PyTorch"
-    ],
-    "link": "https://github.com/iMuneebK/YOLOv8-ObjectDetection-Pipeline",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Fibonacci Series Suite & Matrix Exponentiation",
-    "category": "github",
-    "tag": "ALGORITHMS & MATH",
-    "desc": "High-performance sequence generation suite implementing space-optimized iterative pipelines, memoized dynamic programming, and logarithmic O(log n) 2x2 matrix binary powering for astronomical term values.",
-    "tech": [
-      "Python",
-      "Dynamic Programming",
-      "Matrix Exponentiation",
-      "Benchmarking",
-      "Algorithms"
-    ],
-    "link": "https://github.com/iMuneebK/Fabonacci-Series-Generator",
-    "type": "GitHub Repo"
-  },
-  {
-    "title": "Titanic Survival Prediction (Advanced Stacking)",
-    "category": "kaggle",
-    "tag": "KAGGLE COMPETITION",
-    "desc": "Competitive Kaggle notebook featuring comprehensive feature engineering (title extraction, family binning, cabin deck) and a stacked ensemble of XGBoost, LightGBM, and Random Forest.",
-    "tech": [
-      "Feature Engineering",
-      "Stacking Ensemble",
-      "XGBoost",
-      "LightGBM"
-    ],
-    "link": "https://www.kaggle.com/mmuneebkhan154/code",
-    "type": "Kaggle Profile"
-  },
-  {
-    "title": "House Prices Advanced Regression Pipeline",
-    "category": "kaggle",
-    "tag": "KAGGLE COMPETITION",
-    "desc": "Tabular regression pipeline featuring missing data imputation, skewness log-transformation, polynomial feature generation, and blended ensemble predictions (Ridge, Lasso, ElasticNet, Gradient Boosting).",
-    "tech": [
-      "Tabular ML",
-      "Ridge / Lasso",
-      "Gradient Boosting",
-      "Blending"
-    ],
-    "link": "https://www.kaggle.com/mmuneebkhan154/code",
-    "type": "Kaggle Profile"
-  },
-  {
-    "title": "NLP Disaster Tweets Classification",
-    "category": "kaggle",
-    "tag": "KAGGLE COMPETITION",
-    "desc": "Text classification pipeline analyzing disaster social media posts using TF-IDF, Word Embeddings, Bidirectional LSTMs, and fine-tuned BERT models.",
-    "tech": [
-      "NLP",
-      "TF-IDF",
-      "Bi-LSTM",
-      "BERT Fine-Tuning"
-    ],
-    "link": "https://www.kaggle.com/mmuneebkhan154/code",
-    "type": "Kaggle Profile"
-  },
-  {
-    "title": "Credit Card Fraud Detection (Imbalanced Data)",
-    "category": "kaggle",
-    "tag": "KAGGLE COMPETITION",
-    "desc": "Financial fraud detection pipeline tackling severe class imbalance using SMOTE resampling, Autoencoders for anomaly detection, Isolation Forests, and Precision-Recall thresholding.",
-    "tech": [
-      "Imbalanced Learning",
-      "SMOTE",
-      "Autoencoders",
-      "Isolation Forest"
-    ],
-    "link": "https://www.kaggle.com/mmuneebkhan154/code",
-    "type": "Kaggle Profile"
-  },
-  {
-    "title": "Plant Disease Image Classification (ResNet50)",
-    "category": "kaggle",
-    "tag": "KAGGLE COMPETITION",
-    "desc": "Computer vision notebook benchmarking custom CNN architectures against pretrained ResNet50 models for agricultural crop disease classification with Grad-CAM visual explainability.",
-    "tech": [
-      "Computer Vision",
-      "ResNet50",
-      "Transfer Learning",
-      "Grad-CAM"
-    ],
-    "link": "https://www.kaggle.com/mmuneebkhan154/code",
-    "type": "Kaggle Profile"
-  },
-  {
-    "title": "CommonLit Student Summaries Scoring (DeBERTa)",
-    "category": "kaggle",
-    "tag": "KAGGLE NLP",
-    "desc": "Automated student reading comprehension and summary scoring using fine-tuned DeBERTa-v3 with custom regression heads, MCRMSE loss optimization, and stratified cross-validation.",
-    "tech": [
-      "DeBERTa-v3",
-      "HuggingFace",
-      "PyTorch",
-      "NLP",
-      "Cross-Validation"
-    ],
-    "link": "https://www.kaggle.com/mmuneebkhan154/code",
-    "type": "Kaggle Profile"
-  },
-  {
-    "title": "LLM Detect AI-Generated Text (DeBERTa Ensemble)",
-    "category": "kaggle",
-    "tag": "KAGGLE NLP",
-    "desc": "Ensemble classification system distinguishing student essays from AI-generated prose using token length distribution, TF-IDF byte-pair n-grams, and fine-tuned DeBERTa language models.",
-    "tech": [
-      "LLM Detection",
-      "DeBERTa",
-      "TF-IDF",
-      "Ensemble",
-      "ROC-AUC"
-    ],
-    "link": "https://www.kaggle.com/mmuneebkhan154/code",
-    "type": "Kaggle Profile"
-  },
-  {
-    "title": "ISIC 2024 Skin Cancer Detection (Swin Transformer)",
-    "category": "kaggle",
-    "tag": "KAGGLE VISION",
-    "desc": "Dermoscopic image classification predicting malignancy risk via Swin Transformer transfer learning, balanced focal loss for minority class handling, and partial AUC metric optimization.",
-    "tech": [
-      "Swin Transformer",
-      "Computer Vision",
-      "Transfer Learning",
-      "Medical AI"
-    ],
-    "link": "https://www.kaggle.com/mmuneebkhan154/code",
-    "type": "Kaggle Profile"
-  },
-  {
-    "title": "Optiver Trading Signal & Volatility Forecasting",
-    "category": "kaggle",
-    "tag": "KAGGLE TIME-SERIES",
-    "desc": "Quantitative high-frequency order book and trade volume analytics pipeline engineering weighted mid-price features and training LightGBM models for stock price move predictions.",
-    "tech": [
-      "Quantitative Finance",
-      "LightGBM",
-      "Order Book Analytics",
-      "Feature Engineering"
-    ],
-    "link": "https://www.kaggle.com/mmuneebkhan154/code",
-    "type": "Kaggle Profile"
-  },
-  {
-    "title": "RSNA Abdominal Trauma Detection (3D CNN)",
-    "category": "kaggle",
-    "tag": "KAGGLE VISION",
-    "desc": "Multi-organ trauma assessment from 3D abdominal CT scans using 3D convolutional networks, slice-level feature aggregation, and patient-level injury severity grading.",
-    "tech": [
-      "3D CNN",
-      "Medical Imaging",
-      "CT Scan Analysis",
-      "PyTorch",
-      "Grad-CAM"
-    ],
-    "link": "https://www.kaggle.com/mmuneebkhan154/code",
-    "type": "Kaggle Profile"
+  // Projects filtering (All 35 cards are already pre-rendered into the HTML DOM)
+  function filterProjects(e, cat) {
+    const btns = document.querySelectorAll('.filter-btn');
+    for(let i=0; i<btns.length; i++) {
+      btns[i].classList.remove('active');
+    }
+    if(e && e.target) e.target.classList.add('active');
+    
+    const cards = document.querySelectorAll('.project-card');
+    for(let i=0; i<cards.length; i++) {
+      const c = cards[i];
+      if(cat === 'all' || c.getAttribute('data-category') === cat) {
+        c.style.display = 'flex';
+      } else {
+        c.style.display = 'none';
+      }
+    }
   }
-];
+
+  // Certifications data for interactive modal
   const ALL_CERTS = [
   {
     "name": "Google AI Essentials",
@@ -1522,80 +1803,6 @@
   }
 ];
 
-  // Render Projects (No numbers mentioned on cards; smooth staggered slow entrance)
-  function renderProjects(filter = 'all') {
-    const container = document.getElementById('projectContainer');
-    container.innerHTML = '';
-    
-    const filtered = ALL_PROJECTS.filter(p => filter === 'all' || p.category === filter);
-    
-    filtered.forEach((p, idx) => {
-      const card = document.createElement('div');
-      card.className = 'project-card';
-      card.style.animation = `cardPopInSlow 0.95s cubic-bezier(0.16, 1, 0.3, 1) ${(idx % 8) * 0.07}s both`;
-      
-      const techSpans = p.tech.map(t => `<span>${t}</span>`).join('');
-      const btnClass = p.category === 'kaggle' ? 'project-link-btn kaggle' : 'project-link-btn';
-      
-      card.innerHTML = `
-        <div class="project-head">
-          <div class="project-badge-row">
-            <span class="pnum">PROJECT</span>
-            <span class="ptype">${p.tag}</span>
-          </div>
-          <h3>${p.title}</h3>
-          <p>${p.desc}</p>
-        </div>
-        <div>
-          <div class="tech">${techSpans}</div>
-          <div class="card-footer">
-            <a href="${p.link}" target="_blank" rel="noopener" class="${btnClass}">
-              View on ${p.type} &#8599;
-            </a>
-          </div>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  function filterProjects(e, cat) {
-    const btns = document.querySelectorAll('.filter-btn');
-    for(let i=0; i<btns.length; i++) {
-      btns[i].classList.remove('active');
-    }
-    if(e && e.target) e.target.classList.add('active');
-    renderProjects(cat);
-  }
-
-  // Render Certifications (Simple cards with smooth staggered entrance)
-  function renderCerts() {
-    const container = document.getElementById('certContainer');
-    container.innerHTML = '';
-    
-    ALL_CERTS.forEach((c, idx) => {
-      const card = document.createElement('div');
-      card.className = 'cert-card';
-      card.style.animation = `cardPopInSlow 0.95s cubic-bezier(0.16, 1, 0.3, 1) ${(idx % 8) * 0.07}s both`;
-      card.setAttribute('role', 'button');
-      card.setAttribute('tabindex', '0');
-      card.onclick = () => openCertModal(idx);
-      card.onkeydown = (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCertModal(idx); } };
-      
-      card.innerHTML = `
-        <div>
-          <span class="cert-provider">${c.provider}</span>
-          <h3>${c.name}</h3>
-          <p>${c.desc}</p>
-        </div>
-        <div class="cert-click-cue">
-          <span>Click to view details</span> &rarr;
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  }
-
   function openCertModal(idx) {
     const c = ALL_CERTS[idx];
     if (!c) return;
@@ -1621,7 +1828,7 @@
   }
 
   function handleModalOverlayClick(e) {
-    // Clicking outside the modal card closes it immediately!
+    // Clicking anywhere outside the modal card closes it immediately
     if (e.target.id === 'certModal') {
       closeCertModal();
     }
@@ -1632,11 +1839,7 @@
     if (e.key === 'Escape') closeCertModal();
   });
 
-  // Initialize
-  renderProjects('all');
-  renderCerts();
-
-  // Canvas
+  // Canvas Neural Network Animation
   try {
     const canvas = document.getElementById('signalCanvas');
     if (canvas) {
